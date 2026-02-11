@@ -1,0 +1,347 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@gazelle//:def.bzl", "gazelle")
+load("@rules_deb//distroless:defs.bzl", "flatten")
+load("@sonic_build_infra//python:site_packages.bzl", "site_packages")
+load("@tar.bzl", "mutate", "tar")
+
+# Generate targets from rules_py instead of rules_python.
+#
+# gazelle:map_kind py_library py_library @aspect_rules_py//py:defs.bzl
+# gazelle:map_kind py_binary py_binary @aspect_rules_py//py:defs.bzl
+# gazelle:map_kind py_test py_test //:py_test_wrapper.bzl
+
+# Respect relative imports in package mode
+#
+# gazelle:python_generation_mode package
+# gazelle:python_experimental_allow_relative_imports true
+# gazelle:python_generation_mode_per_file_include_init true
+
+# Make everyone depend on all deps
+#
+# gazelle:resolve_regexp py .* //:all_deps
+
+# Ignore files:
+#
+# gcu and sonic-utilities-data, they're their own wheels.
+# gazelle:exclude gcu
+# gazelle:exclude sonic-utilities-data
+#
+# Setup.py is not needed for the Bazel build
+# gazelle:exclude setup.py
+
+# Override default resolution for in-source mappings, from `packages` in pyproject.toml
+#
+# gazelle:resolve_regexp py ^acl_loader$ //acl_loader
+# gazelle:resolve_regexp py ^acl_loader\. //acl_loader
+# gazelle:resolve_regexp py ^clear$ //clear
+# gazelle:resolve_regexp py ^clear\. //clear
+# gazelle:resolve_regexp py ^clear\.plugins$ //clear/plugins
+# gazelle:resolve_regexp py ^clear\.plugins\. //clear/plugins
+# gazelle:resolve_regexp py ^clear\.plugins.auto$ //clear/plugins/auto
+# gazelle:resolve_regexp py ^clear\.plugins.auto\. //clear/plugins/auto
+# gazelle:resolve_regexp py ^config$ //config
+# gazelle:resolve_regexp py ^config\. //config
+# gazelle:resolve_regexp py ^config\.plugins$ //config/plugins
+# gazelle:resolve_regexp py ^config\.plugins\. //config/plugins
+# gazelle:resolve_regexp py ^config\.plugins.auto$ //config/plugins/auto
+# gazelle:resolve_regexp py ^config\.plugins.auto\. //config/plugins/auto
+# gazelle:resolve_regexp py ^connect$ //connect
+# gazelle:resolve_regexp py ^connect\. //connect
+# gazelle:resolve_regexp py ^consutil$ //consutil
+# gazelle:resolve_regexp py ^consutil\. //consutil
+# gazelle:resolve_regexp py ^counterpoll$ //counterpoll
+# gazelle:resolve_regexp py ^counterpoll\. //counterpoll
+# gazelle:resolve_regexp py ^crm$ //crm
+# gazelle:resolve_regexp py ^crm\. //crm
+# gazelle:resolve_regexp py ^debug$ //debug
+# gazelle:resolve_regexp py ^debug\. //debug
+# gazelle:resolve_regexp py ^generic_config_updater$ //generic_config_updater
+# gazelle:resolve_regexp py ^generic_config_updater\. //generic_config_updater
+# gazelle:resolve_regexp py ^pfcwd$ //pfcwd
+# gazelle:resolve_regexp py ^pfcwd\. //pfcwd
+# gazelle:resolve_regexp py ^sfputil$ //sfputil
+# gazelle:resolve_regexp py ^sfputil\. //sfputil
+# gazelle:resolve_regexp py ^ssdutil$ //ssdutil
+# gazelle:resolve_regexp py ^ssdutil\. //ssdutil
+# gazelle:resolve_regexp py ^pfc$ //pfc
+# gazelle:resolve_regexp py ^pfc\. //pfc
+# gazelle:resolve_regexp py ^psuutil$ //psuutil
+# gazelle:resolve_regexp py ^psuutil\. //psuutil
+# gazelle:resolve_regexp py ^flow_counter_util$ //flow_counter_util
+# gazelle:resolve_regexp py ^flow_counter_util\. //flow_counter_util
+# gazelle:resolve_regexp py ^fdbutil$ //fdbutil
+# gazelle:resolve_regexp py ^fdbutil\. //fdbutil
+# gazelle:resolve_regexp py ^fwutil$ //fwutil
+# gazelle:resolve_regexp py ^fwutil\. //fwutil
+# gazelle:resolve_regexp py ^pcieutil$ //pcieutil
+# gazelle:resolve_regexp py ^pcieutil\. //pcieutil
+# gazelle:resolve_regexp py ^pddf_fanutil$ //pddf_fanutil
+# gazelle:resolve_regexp py ^pddf_fanutil\. //pddf_fanutil
+# gazelle:resolve_regexp py ^pddf_psuutil$ //pddf_psuutil
+# gazelle:resolve_regexp py ^pddf_psuutil\. //pddf_psuutil
+# gazelle:resolve_regexp py ^pddf_thermalutil$ //pddf_thermalutil
+# gazelle:resolve_regexp py ^pddf_thermalutil\. //pddf_thermalutil
+# gazelle:resolve_regexp py ^pddf_ledutil$ //pddf_ledutil
+# gazelle:resolve_regexp py ^pddf_ledutil\. //pddf_ledutil
+# gazelle:resolve_regexp py ^syslog_util$ //syslog_util
+# gazelle:resolve_regexp py ^syslog_util\. //syslog_util
+# gazelle:resolve_regexp py ^rcli$ //rcli
+# gazelle:resolve_regexp py ^rcli\. //rcli
+# gazelle:resolve_regexp py ^show$ //show
+# gazelle:resolve_regexp py ^show\. //show
+# gazelle:resolve_regexp py ^show.interfaces$ //show/interfaces
+# gazelle:resolve_regexp py ^show.interfaces\. //show/interfaces
+# gazelle:resolve_regexp py ^show.plugins$ //show/plugins
+# gazelle:resolve_regexp py ^show.plugins\. //show/plugins
+# gazelle:resolve_regexp py ^show.plugins.auto$ //show/plugins/auto
+# gazelle:resolve_regexp py ^show.plugins.auto\. //show/plugins/auto
+# gazelle:resolve_regexp py ^sonic_installer$ //sonic_installer
+# gazelle:resolve_regexp py ^sonic_installer\. //sonic_installer
+# gazelle:resolve_regexp py ^sonic_installer.bootloader$ //sonic_installer
+# gazelle:resolve_regexp py ^sonic_installer.bootloader\. //sonic_installer
+# gazelle:resolve_regexp py ^sonic_package_manager$ //sonic_package_manager
+# gazelle:resolve_regexp py ^sonic_package_manager\. //sonic_package_manager
+# gazelle:resolve_regexp py ^sonic_package_manager.service_creator$ //sonic_package_manager
+# gazelle:resolve_regexp py ^sonic_package_manager.service_creator\. //sonic_package_manager
+# gazelle:resolve_regexp py ^tests$ //tests
+#
+# Resolve test subpackages to their specific targets (before the generic ^tests\.)
+# gazelle:resolve_regexp py ^tests\.mock_tables //tests/mock_tables
+# gazelle:resolve_regexp py ^tests\.filter_fdb_input //tests/filter_fdb_input
+# gazelle:resolve_regexp py ^tests\.bgp_commands_input //tests/bgp_commands_input
+# gazelle:resolve_regexp py ^tests\.fdbshow_input //tests/fdbshow_input
+# gazelle:resolve_regexp py ^tests\.wm_input //tests/wm_input
+# gazelle:resolve_regexp py ^tests\.ecn_input //tests/ecn_input
+# gazelle:resolve_regexp py ^tests\.mmuconfig_input //tests/mmuconfig_input
+# gazelle:resolve_regexp py ^tests\.mocked_libs //tests/mocked_libs
+# gazelle:resolve_regexp py ^tests\.pfcwd_input //tests/pfcwd_input
+# gazelle:resolve_regexp py ^tests\.fibshow_input //tests/fibshow_input
+#
+# Resolve test peer file imports (test files importing other test files)
+# gazelle:resolve_regexp py ^tests\.ecn_test$ //tests:ecn_test
+# gazelle:resolve_regexp py ^tests\.mmuconfig_test$ //tests:mmuconfig_test
+#
+# Resolve test subpackage with nested structure
+# gazelle:resolve_regexp py ^tests\.generic_config_updater //tests/generic_config_updater
+#
+# Generic fallback for tests.*
+# gazelle:resolve_regexp py ^tests\. //tests
+# gazelle:resolve_regexp py ^undebug$ //undebug
+# gazelle:resolve_regexp py ^undebug\. //undebug
+# gazelle:resolve_regexp py ^watchdogutil$ //watchdogutil
+# gazelle:resolve_regexp py ^watchdogutil\. //watchdogutil
+# gazelle:resolve_regexp py ^sonic_cli_gen$ //sonic_cli_gen
+# gazelle:resolve_regexp py ^sonic_cli_gen\. //sonic_cli_gen
+# gazelle:resolve_regexp py ^mock_tables$ //tests/mock_tables
+# gazelle:resolve_regexp py ^mock_tables\. //tests/mock_tables
+
+# Targets that have to be globbed in //:common to avoid cycles
+#
+# gazelle:resolve_regexp py ^utilities_common$ //:common
+# gazelle:resolve_regexp py ^utilities_common\. //:common
+# gazelle:resolve_regexp py ^dump$ //:common
+# gazelle:resolve_regexp py ^dump\. //:common
+# gazelle:resolve_regexp py ^dump\.plugins$ //:common
+# gazelle:resolve_regexp py ^dump\.plugins\. //:common
+gazelle(
+    name = "gazelle",
+    gazelle = "@multitool//tools/gazelle",
+)
+
+# There is a dependency cycle between utilities_common, dump and dump/plugins.
+# We create a unified target with the relevant sources and tell gazelle to depend on that
+# instead of the individual libraries.
+py_library(
+    name = "common",
+    srcs = [
+        "//dump:srcs",
+        "//utilities_common:srcs",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+    ],
+)
+
+py_library(
+    name = "all_deps",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//scripts:scripts_srcs",  # keep
+        "@sonic_utilities_pip//bcrypt",
+        "@sonic_utilities_pip//click",
+        "@sonic_utilities_pip//cryptography",
+        "@sonic_utilities_pip//urllib3",
+        "@sonic_utilities_pip//click_log",
+        "@sonic_utilities_pip//docker",
+        "@sonic_utilities_pip//docker_image_py",
+        "@sonic_utilities_pip//filelock",
+        "@sonic_utilities_pip//enlighten",
+        "@sonic_utilities_pip//ijson",
+        "@sonic_utilities_pip//ipaddress",
+        "@sonic_utilities_pip//protobuf",
+        "@sonic_utilities_pip//jinja2",
+        "@sonic_utilities_pip//jsondiff",
+        "@sonic_utilities_pip//jsonpatch",
+        "@sonic_utilities_pip//jsonpointer",
+        "@sonic_utilities_pip//natsort",
+        "@sonic_utilities_pip//netaddr",
+        "@sonic_utilities_pip//netifaces",
+        "@sonic_utilities_pip//paramiko",
+        "@sonic_utilities_pip//pexpect",
+        "@sonic_utilities_pip//semantic_version",
+        "@sonic_utilities_pip//prettyprinter",
+        "@sonic_utilities_pip//pyroute2",
+        "@sonic_utilities_pip//requests",
+        "@sonic_utilities_pip//tabulate",
+        "@sonic_utilities_pip//toposort",
+        "@sonic_utilities_pip//www_authenticate",
+        "@sonic_utilities_pip//xmltodict",
+        "@sonic_utilities_pip//lazy_object_proxy",
+        "@sonic_utilities_pip//six",
+        "@sonic_utilities_pip//scp",
+        "@sonic_utilities_pip//sonic_config_engine",
+        "@sonic_utilities_pip//sonic_platform_common",
+        "@sonic_utilities_pip//sonic_py_common",
+        "@sonic_utilities_pip//sonic_yang_mgmt",
+        # Test dependencies
+        "@sonic_utilities_pip//responses",
+        "@sonic_utilities_pip//deepdiff",
+        "@sonic_utilities_pip//mock",
+        "@sonic_utilities_pip//mockredispy",
+        "@sonic_utilities_pip//pytest",
+        "@sonic_utilities_pip//pyfakefs",
+        "@sonic_utilities_pip//pyangbind",
+        # Other SONiC dependencies
+        "@sonic_py_swsssdk//:swsssdk",
+        # TODO(bazel-ready): Implement support for m2crypto.
+        # This dependency is only distributed as an sdist, and needs swig in order to build itself.
+        # Instead of trying to migrate its build system to Bazel,
+        # for now we just take the prebuilt one from the bookworm debian repository.
+        # Of course, some tests won't pass until we add this dependency.
+        # "@sonic_utilities_pip//m2crypto",
+    ],
+)
+
+bzl_library(
+    name = "py_test_wrapper",
+    srcs = ["py_test_wrapper.bzl"],
+    visibility = ["//visibility:public"],
+    deps = ["@aspect_rules_py//py:defs"],
+)
+
+libs_in_wheel = [
+    "//:common",
+    "//acl_loader",
+    "//clear",
+    "//clear/plugins",
+    "//clear/plugins/auto",
+    "//config",
+    "//config/plugins",
+    "//config/plugins/auto",
+    "//connect",
+    "//consutil",
+    "//counterpoll",
+    "//crm",
+    "//debug",
+    "//dump",
+    "//fdbutil",
+    "//flow_counter_util",
+    "//fwutil",
+    "//generic_config_updater",
+    "//pcieutil",
+    "//pddf_fanutil",
+    "//pddf_ledutil",
+    "//pddf_psuutil",
+    "//pddf_thermalutil",
+    "//pfc",
+    "//pfcwd",
+    "//psuutil",
+    "//rcli",
+    "//sfputil",
+    "//show",
+    "//show/interfaces",
+    "//show/plugins",
+    "//show/plugins/auto",
+    "//sonic_cli_gen",
+    "//sonic_installer",
+    "//sonic_package_manager",
+    "//ssdutil",
+    "//syslog_util",
+    "//undebug",
+    "//utilities_common",
+    "//watchdogutil",
+]
+
+# Package containing all the script files.
+tar(
+    name = "scripts_pkg",
+    srcs = [
+        "//scripts:srcs",
+    ],
+    mutate = mutate(
+        package_dir = "./usr/lib/python3/dist-packages",
+        strip_prefix = package_name(),
+    ),
+)
+
+# Package containing dependencies as per pyproject.toml
+# We rename the output directories because that is where a wheel would be installed.
+site_packages(
+    name = "deps_dist",
+    srcs = [":all_deps"],
+    mutate = mutate(
+        package_dir = "./usr/lib/python3/dist-packages",
+        strip_prefix = "install/lib/python3.11/site-packages",
+    ),
+)
+
+py_library(
+    name = "sonic-utilities",
+    deps = libs_in_wheel,
+    visibility = ["//visibility:public"],
+)
+
+# Python source packages from [tool.setuptools].packages in pyproject.toml.
+# Uses the same strip_prefix as deps_dist because aspect_rules_py installs
+# source packages into the same site-packages layout.
+#
+# TODO(bazel-ready): The interface with export_py_info should be merged into rules_py.
+site_packages(
+    name = "libs_dist",
+    srcs = libs_in_wheel,
+    exclude_filter = "external",
+    mutate = mutate(
+        package_dir = "./usr/lib/python3/dist-packages",
+    ),
+)
+
+# Non-Python package data files from [tool.setuptools.package-data] in pyproject.toml.
+tar(
+    name = "pkg_data",
+    srcs = [
+        "//generic_config_updater:pkg_data",
+        "//show:pkg_data",
+        "//sonic_installer:pkg_data",
+    ],
+    mutate = mutate(
+        package_dir = "./usr/lib/python3/dist-packages",
+        strip_prefix = package_name(),
+    ),
+)
+
+# Combined archive of all relevant sources.
+# When expanded into an image, it should replicate how a wheel would be installed.
+flatten(
+    name = "dist",
+    tars = [
+        ":deps_dist",
+        ":libs_dist",
+        ":scripts_pkg",
+        ":pkg_data",
+        "@bookworm//python3-m2crypto:data",
+    ],
+    visibility = ["//visibility:public"],
+    deduplicate = True,
+)

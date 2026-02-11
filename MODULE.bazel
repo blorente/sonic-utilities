@@ -1,0 +1,152 @@
+module(name = "sonic-utilities")
+
+bazel_dep(name = "gazelle", version = "0.47.0")
+bazel_dep(name = "rules_multitool", version = "1.11.1")
+bazel_dep(name = "tar.bzl", version = "0.8.1")
+bazel_dep(name = "aspect_rules_py", version = "1.8.4")
+bazel_dep(name = "caseyduquettesc_rules_python_pytest", version = "1.1.1", repo_name = "rules_python_pytest")
+bazel_dep(name = "bazel_skylib", version = "1.8.2")
+bazel_dep(name = "bazel_lib", version = "3.1.1")
+
+multitool = use_extension("@rules_multitool//multitool:extension.bzl", "multitool")
+multitool.hub(lockfile = "//:multitool.lock.json")
+use_repo(multitool, "multitool")
+
+bazel_dep(name = "rules_distroless", version = "0.0.0", repo_name = "rules_deb")
+local_path_override(
+    module_name = "rules_distroless",
+    path = "../rules_distroless"
+)
+
+bazel_dep(name = "sonic-py-common", version = "0.0.0", repo_name = "sonic_py_common")
+local_path_override(
+    module_name = "sonic-py-common",
+    path = "../sonic-buildimage/src/sonic-py-common",
+)
+
+bazel_dep(name = "sonic-swss-common", version = "0.0.0", repo_name = "sonic_swss_common")
+local_path_override(
+    module_name = "sonic-swss-common",
+    path = "../sonic-swss-common"
+)
+
+bazel_dep(name = "sonic-yang-mgmt", version = "0.0.0", repo_name = "sonic_yang_mgmt")
+local_path_override(
+    module_name = "sonic-yang-mgmt",
+    path = "../sonic-buildimage/src/sonic-yang-mgmt",
+)
+
+bazel_dep(name = "sonic-config-engine", version = "0.0.0", repo_name = "sonic_config_engine")
+local_path_override(
+    module_name = "sonic-config-engine",
+    path = "../sonic-buildimage/src/sonic-config-engine",
+)
+
+bazel_dep(name = "sonic-platform-common", version = "0.0.0", repo_name = "sonic_platform_common")
+local_path_override(
+    module_name = "sonic-platform-common",
+    path = "../sonic-platform-common",
+)
+
+uv = use_extension("@aspect_rules_py//uv/unstable:extension.bzl", "uv")
+uv.declare_hub(hub_name = "sonic_utilities_pip")
+uv.declare_venv(
+    hub_name = "sonic_utilities_pip",
+    venv_name = "default",
+)
+uv.override_requirement(
+    hub_name = "sonic_utilities_pip",
+    requirement = "sonic-py-common",
+    target = "@sonic_py_common//:sonic-py-common",
+    venv_name = "default",
+)
+uv.override_requirement(
+    hub_name = "sonic_utilities_pip",
+    requirement = "sonic-yang-mgmt",
+    target = "@sonic_yang_mgmt//:sonic-yang-mgmt",
+    venv_name = "default",
+)
+# TODO(bazel-complete): This is not supposed to be empty. We should replace it with a real implementation when we figure out sonic platforms
+uv.override_requirement(
+    hub_name = "sonic_utilities_pip",
+    requirement = "sonic-platform-common",
+    target = "//bazel:empty",
+    venv_name = "default",
+)
+uv.override_requirement(
+    hub_name = "sonic_utilities_pip",
+    requirement = "sonic-config-engine",
+    target = "@sonic_config_engine//:sonic-config-engine",
+    venv_name = "default",
+)
+uv.override_requirement(
+    hub_name = "sonic_utilities_pip",
+    requirement = "sonic-utilities",
+    target = "//bazel:empty",
+    venv_name = "default",
+)
+uv.unstable_annotate_requirements(
+    src = "//:annotations.toml",
+    hub_name = "sonic_utilities_pip",
+    venv_name = "default",
+)
+uv.lockfile(
+    hub_name = "sonic_utilities_pip",
+    venv_name = "default",
+    src = "uv.lock",
+)
+use_repo(uv, "sonic_utilities_pip")
+
+# TODO(bazel-ready): Needed to fully resolve sonic-repositories, sonic_config_engine, and sonic_yang_mgmt.
+# Remove when we have a proper registry.
+bazel_dep(name = "sonic-build-infra", version = "0.0.0", repo_name = "sonic_build_infra")
+local_path_override(
+    module_name = "sonic-build-infra",
+    path = "../sonic-build-infra"
+)
+
+bazel_dep(name = "sonic-bazel-common", version = "0.0.0", repo_name = "sonic_bazel_common")
+local_path_override(
+  module_name = "sonic-bazel-common",
+  path = "../sonic-buildimage/tools/sonic-bazel-common",
+)
+
+bazel_dep(name = "libyang3", version = "3.12.2")
+local_path_override(
+    module_name = "libyang3",
+    path = "../sonic-buildimage/src/libyang3",
+)
+
+bazel_dep(name = "libyang3_py3", version = "3.1.0")
+local_path_override(
+    module_name = "libyang3_py3",
+    path = "../sonic-buildimage/src/libyang3-py3",
+)
+
+bazel_dep(name = "sonic-py-swsssdk", version = "0.0.0", repo_name = "sonic_py_swsssdk")
+local_path_override(
+    module_name = "sonic-py-swsssdk",
+    path = "../sonic-py-swsssdk"
+)
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# TODO(bazel-ready): For m2crypto. Please see comment in `//:all_deps`
+apt = use_extension("@rules_deb//apt:extensions.bzl", "apt")
+
+apt.sources_list(
+    architectures = ["amd64"],
+    components = ["main"],
+    suites = ["bookworm", "bookworm-updates"],
+    uris = ["https://snapshot.debian.org/archive/debian/20251001T023456Z"],
+)
+
+apt.install(
+    dependency_set = "bookworm",
+    suites = ["bookworm", "bookworm-updates"],
+    packages = [
+        "python3-m2crypto",
+    ],
+)
+
+use_repo(apt, "bookworm")

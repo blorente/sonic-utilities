@@ -7,10 +7,8 @@
 # https://stackoverflow.com/questions/18787036/difference-between-entry-points-console-scripts-and-scripts-in-setup-py
 from __future__ import print_function
 import sys
-import fastentrypoints
 
 from setuptools import setup
-import pkg_resources
 from packaging import version
 
 # sonic_dependencies, version requirement only supports '>='
@@ -273,6 +271,7 @@ setup(
         'scp==0.14.5',
     ] + sonic_dependencies,
     setup_requires= [
+        # "fastentrypoints",
         'pytest-runner',
         'wheel'
     ],

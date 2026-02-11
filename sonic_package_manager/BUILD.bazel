@@ -1,0 +1,38 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//sonic_package_manager",
+    ],
+)
+
+filegroup(
+    name = "srcs",
+    srcs = glob([
+        "*.py",
+        "service_creator/**/*.py",
+    ]),
+    visibility = ["//:__subpackages__"],
+)
+
+# There are dependency cycles between this and service_creator.
+# This megatarget target breaks those cycles by globbing them in a single target.
+# gazelle:exclude service_creator
+py_library(
+    name = "sonic_package_manager",
+    srcs = glob([
+        "*.py",
+        "service_creator/**/*.py",
+    ]),
+    imports = ["."],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//config",
+        "//sonic_cli_gen",
+    ],
+)

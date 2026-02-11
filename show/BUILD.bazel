@@ -1,0 +1,86 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+filegroup(
+    name = "pkg_data",
+    srcs = ["aliases.ini"],
+    visibility = ["//:__subpackages__"],
+)
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//show",
+        "//tests/mock_tables",
+    ],
+)
+
+py_binary(
+    name = "memory_statistics",
+    srcs = ["memory_statistics.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+filegroup(
+    name = "srcs",
+    srcs = glob(["*.py"]),
+    visibility = ["//:__subpackages__"],
+)
+
+py_library(
+    name = "show",
+    srcs = [
+        "__init__.py",
+        "acl.py",
+        "bgp_cli.py",
+        "bgp_common.py",
+        "bgp_frr_v4.py",
+        "bgp_frr_v6.py",
+        "bgp_quagga_v4.py",
+        "bgp_quagga_v6.py",
+        "chassis_modules.py",
+        "copp.py",
+        "dns.py",
+        "dropcounters.py",
+        "fabric.py",
+        "feature.py",
+        "fgnhg.py",
+        "flow_counters.py",
+        "gearbox.py",
+        "hft.py",
+        "icmp.py",
+        "kdump.py",
+        "kube.py",
+        "main.py",
+        "memory_statistics.py",
+        "muxcable.py",
+        "nat.py",
+        "p4_table.py",
+        "platform.py",
+        "processes.py",
+        "reboot_cause.py",
+        "sflow.py",
+        "srv6.py",
+        "stp.py",
+        "switch.py",
+        "syslog.py",
+        "system_health.py",
+        "vlan.py",
+        "vnet.py",
+        "vxlan.py",
+        "warm_restart.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//flow_counter_util",
+        "//syslog_util",
+        "//tests",
+        "//tests/mock_tables",
+    ],
+)

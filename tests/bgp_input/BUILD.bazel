@@ -1,0 +1,7 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "bgp_input",
+    srcs = ["assert_show_output.py"],
+    visibility = ["//:__subpackages__"],
+)

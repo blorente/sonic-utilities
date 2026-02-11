@@ -1,0 +1,37 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+load("@rules_deb//distroless:defs.bzl", "flatten")
+load("@tar.bzl", "mutate", "tar")
+
+py_binary(
+    name = "generate_completions",
+    srcs = ["generate_completions.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_library(
+    name = "sonic-utilities-data",
+    srcs = ["generate_completions.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+tar(
+    name = "templates",
+    srcs = glob(["templates/**/*.j2"]),
+    mutate = mutate(
+        package_dir = "./usr/share/sonic/templates",
+        strip_prefix = package_name() + "/templates",
+    ),
+)
+
+# Note: We haven't migrated console completions because they depend on having a prebuilt wheel, which we don't produce with Bazel yet.
+# build/*                             /etc/bash_completion.d/
+
+flatten(
+    name = "sonic-utilities-data_all_pkg",
+    tars = [
+        ":templates",
+    ],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,11 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "switchstat_input",
+    srcs = [
+        "common_output.py",
+        "multi_asic_output.py",
+        "single_asic_output.py",
+    ],
+    visibility = ["//:__subpackages__"],
+)

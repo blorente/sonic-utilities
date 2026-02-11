@@ -1,0 +1,41 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+    ],
+)
+
+# In Bazel, globs don't traverse package boundaries,
+# so this BUILD file makes it impossible to glob dump from outside.
+# This target is for //:common, so that it can depend on the srcs in dump without globbing them.
+# gazelle:exclude plugins
+filegroup(
+    name = "srcs",
+    srcs = glob([
+        "*.py",
+        "plugins/**/*.py",
+    ]),
+    visibility = ["//:__subpackages__"],
+)
+
+py_library(
+    name = "dump",
+    srcs = [
+        "__init__.py",
+        "dash_util.py",
+        "helper.py",
+        "main.py",
+        "match_helper.py",
+        "match_infra.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+    ],
+)

@@ -1,0 +1,244 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+load("//:py_test_wrapper.bzl", "py_test")
+
+py_library(
+    name = "module_tests",
+    srcs = ["__init__.py"],
+    visibility = ["//:__subpackages__"],
+)
+
+py_test(
+    name = "acl_test",
+    srcs = ["acl_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "copp_test",
+    srcs = ["copp_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "dash_acl_group_test",
+    srcs = ["dash_acl_group_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+    ],
+)
+
+py_test(
+    name = "dash_acl_in_test",
+    srcs = ["dash_acl_in_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+    ],
+)
+
+py_test(
+    name = "dash_acl_out_test",
+    srcs = ["dash_acl_out_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+    ],
+)
+
+py_test(
+    name = "dash_acl_rule_test",
+    srcs = ["dash_acl_rule_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "dash_appliance_test",
+    srcs = ["dash_appliance_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "dash_eni_test",
+    srcs = ["dash_eni_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "dash_prefix_test",
+    srcs = ["dash_prefix_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+    ],
+)
+
+py_test(
+    name = "dash_qos_test",
+    srcs = ["dash_qos_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "dash_route_rule_test",
+    srcs = ["dash_route_rule_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "dash_route_test",
+    srcs = ["dash_route_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "dash_vnet_mapping_test",
+    srcs = ["dash_vnet_mapping_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "dash_vnet_test",
+    srcs = ["dash_vnet_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "evpn_test",
+    srcs = ["evpn_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "fdb_test",
+    srcs = ["fdb_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "interface_test",
+    srcs = ["interface_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "port_test",
+    srcs = ["port_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "portchannel_member_test",
+    srcs = ["portchannel_member_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "portchannel_test",
+    srcs = ["portchannel_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "route_test",
+    srcs = ["route_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "vlan_test",
+    srcs = ["vlan_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "vxlan_tunnel_map_test",
+    srcs = ["vxlan_tunnel_map_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)
+
+py_test(
+    name = "vxlan_tunnel_test",
+    srcs = ["vxlan_tunnel_test.py"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//tests",
+    ],
+)

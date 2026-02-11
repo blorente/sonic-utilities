@@ -1,0 +1,67 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//config",
+        "//generic_config_updater",
+        "//tests/mock_tables",
+    ],
+)
+
+py_binary(
+    name = "memory_statistics",
+    srcs = ["memory_statistics.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+filegroup(
+    name = "srcs",
+    srcs = glob(["*.py"]),
+    visibility = ["//:__subpackages__"],
+)
+
+py_library(
+    name = "config",
+    srcs = [
+        "__init__.py",
+        "aaa.py",
+        "bgp_cli.py",
+        "chassis_modules.py",
+        "config_mgmt.py",
+        "console.py",
+        "dns.py",
+        "fabric.py",
+        "feature.py",
+        "flow_counters.py",
+        "hft.py",
+        "kdump.py",
+        "kube.py",
+        "main.py",
+        "mclag.py",
+        "memory_statistics.py",
+        "muxcable.py",
+        "nat.py",
+        "stp.py",
+        "switchport.py",
+        "syslog.py",
+        "utils.py",
+        "validated_config_db_connector.py",
+        "vlan.py",
+        "vxlan.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//flow_counter_util",
+        "//generic_config_updater",
+        "//syslog_util",
+        "//tests/mock_tables",
+    ],
+)

@@ -1,0 +1,34 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+filegroup(
+    name = "pkg_data",
+    srcs = [
+        "gcu_field_operation_validators.conf.json",
+        "gcu_services_validator.conf.json",
+    ],
+    visibility = ["//:__subpackages__"],
+)
+
+filegroup(
+    name = "srcs",
+    srcs = glob(["*.py"]),
+    visibility = ["//:__subpackages__"],
+)
+
+py_library(
+    name = "generic_config_updater",
+    srcs = [
+        "__init__.py",
+        "change_applier.py",
+        "field_operation_validators.py",
+        "generic_updater.py",
+        "gu_common.py",
+        "patch_sorter.py",
+        "services_validator.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+    ],
+)

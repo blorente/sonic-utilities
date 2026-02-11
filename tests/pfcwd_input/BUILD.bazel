@@ -1,0 +1,10 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "pfcwd_input",
+    srcs = [
+        "__init__.py",
+        "pfcwd_test_vectors.py",
+    ],
+    visibility = ["//:__subpackages__"],
+)

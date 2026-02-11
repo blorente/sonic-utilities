@@ -1,0 +1,7 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "bfd_input",
+    srcs = ["bfd_masic_test_vectors.py"],
+    visibility = ["//:__subpackages__"],
+)

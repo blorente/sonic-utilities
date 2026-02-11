@@ -1,0 +1,43 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+filegroup(
+    name = "pkg_data",
+    srcs = ["aliases.ini"],
+    visibility = ["//:__subpackages__"],
+)
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//sonic_installer",
+    ],
+)
+
+filegroup(
+    name = "srcs",
+    srcs = glob([
+        "*.py",
+        "bootloader/**/*.py",
+    ]),
+    visibility = ["//:__subpackages__"],
+)
+
+# There are dependency cycles between this and ./booloader.
+# This megatarget target breaks those cycles by globbing them in a single target.
+# gazelle:exclude bootloader
+py_library(
+    name = "sonic_installer",
+    srcs = glob([
+        "*.py",
+        "bootloader/**/*.py",
+    ]),
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+    ],
+)

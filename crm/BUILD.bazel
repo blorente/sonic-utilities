@@ -1,0 +1,33 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+        "//crm",
+    ],
+)
+
+filegroup(
+    name = "srcs",
+    srcs = glob(["*.py"]),
+    visibility = ["//:__subpackages__"],
+)
+
+py_library(
+    name = "crm",
+    srcs = [
+        "__init__.py",
+        "dash_config.py",
+        "dash_show.py",
+        "main.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//:all_deps",
+        "//:common",
+    ],
+)

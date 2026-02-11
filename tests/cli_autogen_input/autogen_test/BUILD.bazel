@@ -1,0 +1,7 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "autogen_test",
+    srcs = ["show_cmd_output.py"],
+    visibility = ["//:__subpackages__"],
+)

@@ -1,0 +1,11 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "bgp_commands_input",
+    srcs = [
+        "__init__.py",
+        "bgp_neighbor_test_vector.py",
+        "bgp_network_test_vector.py",
+    ],
+    visibility = ["//:__subpackages__"],
+)
