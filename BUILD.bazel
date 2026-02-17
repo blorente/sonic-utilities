@@ -1,11 +1,12 @@
 load("@aspect_rules_py//py:defs.bzl", "py_library")
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@gazelle//:def.bzl", "gazelle")
 
 # Generate targets from rules_py instead of rules_python.
 #
 # gazelle:map_kind py_library py_library @aspect_rules_py//py:defs.bzl
 # gazelle:map_kind py_binary py_binary @aspect_rules_py//py:defs.bzl
-# gazelle:map_kind py_test py_test @aspect_rules_py//py:defs.bzl
+# gazelle:map_kind py_test py_test //py_test_wrapper.bzl
 
 # Make everyone depend on all deps
 #
@@ -175,7 +176,6 @@ py_library(
 ###
 ### gazelle:resolve py swsscommon @sonic_swss_common//pyext:swsscommon
 
-
 ### Platform-dependent dependencies
 ###
 ### gazelle:resolve py sonic_platform //:platform_deps
@@ -196,4 +196,11 @@ py_library(
     srcs = ["setup.py"],
     visibility = ["//:__subpackages__"],
     deps = ["//:all_deps"],
+)
+
+bzl_library(
+    name = "py_test_wrapper",
+    srcs = ["py_test_wrapper.bzl"],
+    visibility = ["//visibility:public"],
+    deps = ["@aspect_rules_py//py:defs"],
 )
