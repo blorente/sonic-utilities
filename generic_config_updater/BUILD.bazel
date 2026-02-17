@@ -1,0 +1,16 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "generic_config_updater",
+    srcs = [
+        "__init__.py",
+        "change_applier.py",
+        "field_operation_validators.py",
+        "generic_updater.py",
+        "gu_common.py",
+        "patch_sorter.py",
+        "services_validator.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)

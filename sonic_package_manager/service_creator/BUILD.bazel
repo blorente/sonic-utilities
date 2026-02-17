@@ -1,0 +1,14 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "service_creator",
+    srcs = [
+        "__init__.py",
+        "creator.py",
+        "feature.py",
+        "sonic_db.py",
+        "utils.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)

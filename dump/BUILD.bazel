@@ -1,0 +1,22 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_library(
+    name = "dump",
+    srcs = [
+        "__init__.py",
+        "dash_util.py",
+        "helper.py",
+        "main.py",
+        "match_helper.py",
+        "match_infra.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)

@@ -1,0 +1,20 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_library(
+    name = "fwutil",
+    srcs = [
+        "__init__.py",
+        "lib.py",
+        "log.py",
+        "main.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)

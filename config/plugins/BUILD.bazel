@@ -1,0 +1,28 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_binary(
+    name = "mlnx",
+    srcs = ["mlnx.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_library(
+    name = "plugins",
+    srcs = [
+        "__init__.py",
+        "auto_techsupport.py",
+        "barefoot.py",
+        "mlnx.py",
+        "nvgre_tunnel.py",
+        "nvidia_bluefield.py",
+        "pbh.py",
+        "sonic-fine-grained-ecmp_yang.py",
+        "sonic-hash.py",
+        "sonic-passwh_yang.py",
+        "sonic-system-ldap_yang.py",
+        "sonic-trimming.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)

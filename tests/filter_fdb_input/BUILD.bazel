@@ -1,0 +1,12 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library", "py_test")
+
+py_library(
+    name = "filter_fdb_input",
+    srcs = ["__init__.py"],
+    visibility = ["//:__subpackages__"],
+)
+
+py_test(
+    name = "test_vectors",
+    srcs = ["test_vectors.py"],
+)

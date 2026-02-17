@@ -1,5 +1,5 @@
-# Select default venv for pip.
-# common --@sonic_host_services_pip//venv=default
-
 common --registry=https://raw.githubusercontent.com/aspect-build/bazel-central-registry/aspect_rules_py-v1.7.1
 common --registry=https://bcr.bazel.build
+
+# Select default venv for pip.
+common --@sonic_utilities_pip//venv=default

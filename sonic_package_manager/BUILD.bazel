@@ -1,0 +1,33 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_library(
+    name = "sonic_package_manager",
+    srcs = [
+        "__init__.py",
+        "constraint.py",
+        "database.py",
+        "dockerapi.py",
+        "errors.py",
+        "logger.py",
+        "main.py",
+        "manager.py",
+        "manifest.py",
+        "metadata.py",
+        "package.py",
+        "progress.py",
+        "reference.py",
+        "registry.py",
+        "source.py",
+        "utils.py",
+        "version.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)

@@ -1,0 +1,14 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "mock_tables",
+    srcs = [
+        "__init__.py",
+        "dbconnector.py",
+        "mock_multi_asic.py",
+        "mock_multi_asic_3_asics.py",
+        "mock_single_asic.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)

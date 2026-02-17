@@ -89,6 +89,11 @@ testing = [
     "deepdiff>=6.2.2",
 ]
 
+# These deps are installed in the container, but not resolved with the rest of dependencies.
+container = [
+    "pyangbind==0.8.1",
+]
+
 [project.scripts]
 acl-loader = "acl_loader.main:cli"
 config = "config.main:config"

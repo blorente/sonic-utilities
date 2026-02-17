@@ -1,0 +1,29 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library", "py_test")
+
+py_library(
+    name = "dump_tests",
+    srcs = [
+        "__init__.py",
+        "mock_redis.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "dash_object_test",
+    srcs = ["dash_object_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "dump_state_test",
+    srcs = ["dump_state_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "match_engine_test",
+    srcs = ["match_engine_test.py"],
+    deps = ["//:all_deps"],
+)

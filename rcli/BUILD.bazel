@@ -1,0 +1,28 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_binary(
+    name = "rexec",
+    srcs = ["rexec.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_binary(
+    name = "rshell",
+    srcs = ["rshell.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_library(
+    name = "rcli",
+    srcs = [
+        "__init__.py",
+        "linecard.py",
+        "rexec.py",
+        "rshell.py",
+        "utils.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)

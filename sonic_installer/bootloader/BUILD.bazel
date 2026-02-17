@@ -1,0 +1,15 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "bootloader",
+    srcs = [
+        "__init__.py",
+        "aboot.py",
+        "bootloader.py",
+        "grub.py",
+        "onie.py",
+        "uboot.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)

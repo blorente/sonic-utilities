@@ -1,0 +1,15 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_binary(
+    name = "generate_completions",
+    srcs = ["generate_completions.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_library(
+    name = "sonic-utilities-data",
+    srcs = ["generate_completions.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)

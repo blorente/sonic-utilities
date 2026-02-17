@@ -1,0 +1,7 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "mmuconfig_input",
+    srcs = ["mmuconfig_test_vectors.py"],
+    visibility = ["//:__subpackages__"],
+)

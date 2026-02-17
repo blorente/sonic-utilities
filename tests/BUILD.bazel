@@ -1,0 +1,1174 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library", "py_test")
+
+py_library(
+    name = "tests",
+    srcs = [
+        "__init__.py",
+        "config_int_ip_common.py",
+        "route_check_test_data.py",
+        "show_ip_route_common.py",
+        "utils.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_library(
+    name = "conftest",
+    testonly = True,
+    srcs = ["conftest.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "aaa_test",
+    srcs = ["aaa_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "acl_config_test",
+    srcs = ["acl_config_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "acl_loader_test",
+    srcs = ["acl_loader_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "aclshow_test",
+    srcs = ["aclshow_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "asic_sdk_health_event_test",
+    srcs = ["asic_sdk_health_event_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "bgp_commands_test",
+    srcs = ["bgp_commands_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "bgp_test",
+    srcs = ["bgp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "buffer_test",
+    srcs = ["buffer_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "chassis_db_consistency_checker_test",
+    srcs = ["chassis_db_consistency_checker_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "chassis_modules_test",
+    srcs = ["chassis_modules_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "clear_test",
+    srcs = ["clear_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "cli_autogen_test",
+    srcs = ["cli_autogen_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "cli_autogen_yang_parser_test",
+    srcs = ["cli_autogen_yang_parser_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "cli_sessions_test",
+    srcs = ["cli_sessions_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_an_test",
+    srcs = ["config_an_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_dpb_test",
+    srcs = ["config_dpb_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_fabric_test",
+    srcs = ["config_fabric_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_hft_test",
+    srcs = ["config_hft_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_int_ip_test",
+    srcs = ["config_int_ip_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_int_mtu_test",
+    srcs = ["config_int_mtu_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_int_name_test",
+    srcs = ["config_int_name_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_lt_test",
+    srcs = ["config_lt_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_memory_statistics_test",
+    srcs = ["config_memory_statistics_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_mgmt_test",
+    srcs = ["config_mgmt_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_mirror_session_test",
+    srcs = ["config_mirror_session_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_nvidia_bluefield_test",
+    srcs = ["config_nvidia_bluefield_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_override_test",
+    srcs = ["config_override_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_snmp_test",
+    srcs = ["config_snmp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_test",
+    srcs = ["config_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "config_xcvr_test",
+    srcs = ["config_xcvr_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "console_test",
+    srcs = ["console_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "copp_test",
+    srcs = ["copp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "coredump_gen_handler_test",
+    srcs = ["coredump_gen_handler_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "counterpoll_test",
+    srcs = ["counterpoll_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "crm_dash_test",
+    srcs = ["crm_dash_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "crm_test",
+    srcs = ["crm_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "db_migrator_test",
+    srcs = ["db_migrator_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "debug_test",
+    srcs = ["debug_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "decode_syseeprom_test",
+    srcs = ["decode_syseeprom_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "dhcp_rate_test",
+    srcs = ["dhcp_rate_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "disk_check_test",
+    srcs = ["disk_check_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "dns_test",
+    srcs = ["dns_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "dropconfig_test",
+    srcs = ["dropconfig_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "drops_group_test",
+    srcs = ["drops_group_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "dualtor_neighbor_check_test",
+    srcs = ["dualtor_neighbor_check_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "ecn_test",
+    srcs = ["ecn_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fabricstat_test",
+    srcs = ["fabricstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fan_test",
+    srcs = ["fan_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fast_linkup_test",
+    srcs = ["fast_linkup_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fast_reboot_dump_test",
+    srcs = ["fast_reboot_dump_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fast_reboot_filter_routes_test",
+    srcs = ["fast_reboot_filter_routes_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fast_reboot_test",
+    srcs = ["fast_reboot_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fdbshow_test",
+    srcs = ["fdbshow_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "feature_test",
+    srcs = ["feature_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fetch_routes_chunk_test",
+    srcs = ["fetch_routes_chunk_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fgnhg_test",
+    srcs = ["fgnhg_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fibshow_test",
+    srcs = ["fibshow_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "filter_fdb_entries_test",
+    srcs = ["filter_fdb_entries_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fine_grained_ecmp_test",
+    srcs = ["fine_grained_ecmp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "flock_test",
+    srcs = ["flock_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "flow_counter_stats_test",
+    srcs = ["flow_counter_stats_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "fwutil_test",
+    srcs = ["fwutil_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "gearbox_test",
+    srcs = ["gearbox_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "hash_test",
+    srcs = ["hash_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "icmp_test",
+    srcs = ["icmp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "installer_bootloader_aboot_test",
+    srcs = ["installer_bootloader_aboot_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "installer_bootloader_bootloader_test",
+    srcs = ["installer_bootloader_bootloader_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "installer_bootloader_grub_test",
+    srcs = ["installer_bootloader_grub_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "installer_bootloader_onie_test",
+    srcs = ["installer_bootloader_onie_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "installer_bootloader_uboot_test",
+    srcs = ["installer_bootloader_uboot_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "installer_dependency_test",
+    srcs = ["installer_dependency_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "installer_docker_test",
+    srcs = ["installer_docker_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "interfaces_test",
+    srcs = ["interfaces_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "intfstat_test",
+    srcs = ["intfstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "intfutil_test",
+    srcs = ["intfutil_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "ip_config_test",
+    srcs = ["ip_config_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "ip_show_routes_multi_asic_test",
+    srcs = ["ip_show_routes_multi_asic_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "ip_show_routes_test",
+    srcs = ["ip_show_routes_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "ip_show_routes_voq_chassis_test",
+    srcs = ["ip_show_routes_voq_chassis_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "ipv6_link_local_test",
+    srcs = ["ipv6_link_local_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "kdump_test",
+    srcs = ["kdump_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "kube_test",
+    srcs = ["kube_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "ldap_test",
+    srcs = ["ldap_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "leakage_status_test",
+    srcs = ["leakage_status_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "lldp_test",
+    srcs = ["lldp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "loopback_action_test",
+    srcs = ["loopback_action_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "mclag_test",
+    srcs = ["mclag_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "memory_check_handler_test",
+    srcs = ["memory_check_handler_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "memory_threshold_check_test",
+    srcs = ["memory_threshold_check_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "mmuconfig_test",
+    srcs = ["mmuconfig_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "mpls_test",
+    srcs = ["mpls_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "multi_asic_dropstat_test",
+    srcs = ["multi_asic_dropstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "multi_asic_ecnconfig_test",
+    srcs = ["multi_asic_ecnconfig_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "multi_asic_fdbshow_test",
+    srcs = ["multi_asic_fdbshow_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "multi_asic_intfutil_test",
+    srcs = ["multi_asic_intfutil_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "multi_asic_mmuconfig_test",
+    srcs = ["multi_asic_mmuconfig_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "multi_asic_pfc_test",
+    srcs = ["multi_asic_pfc_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "multi_asic_pgdropstat_test",
+    srcs = ["multi_asic_pgdropstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "multi_asic_queue_counter_test",
+    srcs = ["multi_asic_queue_counter_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "multi_asic_show_bfd_test",
+    srcs = ["multi_asic_show_bfd_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "multi_asic_watermarkstat_test",
+    srcs = ["multi_asic_watermarkstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "muxcable_test",
+    srcs = ["muxcable_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "nat_test",
+    srcs = ["nat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "neighbor_advertiser_test",
+    srcs = ["neighbor_advertiser_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "null_route_helper_test",
+    srcs = ["null_route_helper_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "nvgre_tunnel_test",
+    srcs = ["nvgre_tunnel_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "p4_table_test",
+    srcs = ["p4_table_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "passw_hardening_test",
+    srcs = ["passw_hardening_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "pbh_test",
+    srcs = ["pbh_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "pcieutil_test",
+    srcs = ["pcieutil_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "pddf_thermalutil_test",
+    srcs = ["pddf_thermalutil_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "pfc_test",
+    srcs = ["pfc_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "pfcstat_test",
+    srcs = ["pfcstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "pfcwd_test",
+    srcs = ["pfcwd_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "pgdropstat_test",
+    srcs = ["pgdropstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "port2alias_test",
+    srcs = ["port2alias_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "portchannel_test",
+    srcs = ["portchannel_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "portstat_test",
+    srcs = ["portstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "psushow_test",
+    srcs = ["psushow_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "psuutil_test",
+    srcs = ["psuutil_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "queue_counter_test",
+    srcs = ["queue_counter_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "queuestat_test",
+    srcs = ["queuestat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "radius_test",
+    srcs = ["radius_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "reboot_cause_test",
+    srcs = ["reboot_cause_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "remote_cli_test",
+    srcs = ["remote_cli_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "remote_show_test",
+    srcs = ["remote_show_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "route_check_test",
+    srcs = ["route_check_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "sensor_test",
+    srcs = ["sensor_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "sflow_test",
+    srcs = ["sflow_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "sfp_test",
+    srcs = ["sfp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "sfputil_test",
+    srcs = ["sfputil_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_acl_test",
+    srcs = ["show_acl_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_barefoot_test",
+    srcs = ["show_barefoot_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_bfd_test",
+    srcs = ["show_bfd_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_bgp_neighbor_test",
+    srcs = ["show_bgp_neighbor_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_bgp_network_test",
+    srcs = ["show_bgp_network_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_bmp_test",
+    srcs = ["show_bmp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_breakout_test",
+    srcs = ["show_breakout_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_event_counters_test",
+    srcs = ["show_event_counters_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_hft_test",
+    srcs = ["show_hft_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_ip_int_test",
+    srcs = ["show_ip_int_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_memory_statistics_test",
+    srcs = ["show_memory_statistics_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_mirror_test",
+    srcs = ["show_mirror_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_mlnx_test",
+    srcs = ["show_mlnx_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_platform_test",
+    srcs = ["show_platform_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_run_bgp_test",
+    srcs = ["show_run_bgp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_snmp_test",
+    srcs = ["show_snmp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_srv6_test",
+    srcs = ["show_srv6_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_test",
+    srcs = ["show_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_vnet_test",
+    srcs = ["show_vnet_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "show_vnet_vxlan_cli_test",
+    srcs = ["show_vnet_vxlan_cli_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "sign_and_verify_test",
+    srcs = ["sign_and_verify_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "single_asic_dropstat_test",
+    srcs = ["single_asic_dropstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "sku_create_test",
+    srcs = ["sku_create_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "sonic_bootchart_test",
+    srcs = ["sonic_bootchart_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "sonic_error_report_test",
+    srcs = ["sonic_error_report_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "sonic_kdump_config_test",
+    srcs = ["sonic_kdump_config_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "srv6stat_test",
+    srcs = ["srv6stat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "ssdutil_test",
+    srcs = ["ssdutil_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "static_routes_test",
+    srcs = ["static_routes_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "storm_control_test",
+    srcs = ["storm_control_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "stp_test",
+    srcs = ["stp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "subintf_test",
+    srcs = ["subintf_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "suppress_pending_fib_test",
+    srcs = ["suppress_pending_fib_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "swap_allocator_test",
+    srcs = ["swap_allocator_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "switchstat_test",
+    srcs = ["switchstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "synchronous_mode_test",
+    srcs = ["synchronous_mode_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "syslog_multi_asic_test",
+    srcs = ["syslog_multi_asic_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "syslog_test",
+    srcs = ["syslog_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "system_health_test",
+    srcs = ["system_health_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "techsupport_cleanup_test",
+    srcs = ["techsupport_cleanup_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "techsupport_test",
+    srcs = ["techsupport_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "test_aggregate_voq_counters",
+    srcs = ["test_aggregate_voq_counters.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "test_chassis",
+    srcs = ["test_chassis.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "test_config_mstp",
+    srcs = ["test_config_mstp.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "test_module",
+    srcs = ["test_module.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "test_sonic_installer",
+    srcs = ["test_sonic_installer.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "test_util_base",
+    srcs = ["test_util_base.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "tpid_test",
+    srcs = ["tpid_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "trimming_test",
+    srcs = ["trimming_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "tunnelstat_test",
+    srcs = ["tunnelstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "validated_config_db_connector_test",
+    srcs = ["validated_config_db_connector_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "vlan_test",
+    srcs = ["vlan_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "vnet_route_check_test",
+    srcs = ["vnet_route_check_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "vnet_test",
+    srcs = ["vnet_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "vrf_test",
+    srcs = ["vrf_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "vrrp_test",
+    srcs = ["vrrp_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "vxlan_test",
+    srcs = ["vxlan_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "watchdogutil_test",
+    srcs = ["watchdogutil_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "watermarkstat_test",
+    srcs = ["watermarkstat_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "wred_queue_counter_test",
+    srcs = ["wred_queue_counter_test.py"],
+    deps = ["//:all_deps"],
+)
+
+py_test(
+    name = "yang_config_validation_test",
+    srcs = ["yang_config_validation_test.py"],
+    deps = ["//:all_deps"],
+)

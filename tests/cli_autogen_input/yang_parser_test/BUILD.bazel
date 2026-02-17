@@ -1,0 +1,7 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "yang_parser_test",
+    srcs = ["assert_dictionaries.py"],
+    visibility = ["//:__subpackages__"],
+)

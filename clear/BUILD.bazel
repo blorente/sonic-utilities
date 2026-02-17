@@ -1,0 +1,22 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
+
+py_library(
+    name = "clear",
+    srcs = [
+        "__init__.py",
+        "bgp_frr_v6.py",
+        "bgp_quagga_v4.py",
+        "bgp_quagga_v6.py",
+        "main.py",
+        "stp.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)

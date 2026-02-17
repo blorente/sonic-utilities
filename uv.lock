@@ -448,6 +448,15 @@ wheels = [
 ]
 
 [[package]]
+name = "enum34"
+version = "1.1.10"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/11/c4/2da1f4952ba476677a42f25cd32ab8aaf0e1c0d0e00b89822b835c7e654c/enum34-1.1.10.tar.gz", hash = "sha256:cce6a7477ed816bd2542d03d53db9f0db935dd013b70f336a95c73979289f248", size = 28187, upload-time = "2020-03-10T17:48:00.865Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/63/f6/ccb1c83687756aeabbf3ca0f213508fcfb03883ff200d201b3a4c60cedcc/enum34-1.1.10-py3-none-any.whl", hash = "sha256:c3858660960c984d6ab0ebad691265180da2b43f07e061c0f8dca9ef3cffd328", size = 11224, upload-time = "2020-03-10T17:48:03.174Z" },
+]
+
+[[package]]
 name = "filelock"
 version = "3.24.2"
 source = { registry = "https://pypi.org/simple" }
@@ -875,6 +884,32 @@ sdist = { url = "https://files.pythonhosted.org/packages/20/e5/16ff212c1e452235a
 wheels = [
     { url = "https://files.pythonhosted.org/packages/22/a6/858897256d0deac81a172289110f31629fc4cee19b6f01283303e18c8db3/ptyprocess-0.7.0-py2.py3-none-any.whl", hash = "sha256:4b41f3967fce3af57cc7e94b888626c18bf37a083e3651ca8feeb66d492fef35", size = 13993, upload-time = "2020-12-28T15:15:28.35Z" },
 ]
+
+[[package]]
+name = "pyang"
+version = "2.7.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "lxml" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/4f/14/1baf1c9e6e702a2d693bbd776830a880024f52eff98e1da3288e1175f47b/pyang-2.7.1.tar.gz", hash = "sha256:ccffeebc6796a462ed6f63e802b9d61b0f21bf6cee0af88362cbda553483fe32", size = 497003, upload-time = "2025-08-29T07:37:54.279Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/58/a9/ffb5056d13cb5e2b86dad7131d2195fc61e86ce8ac5d7e6ee4ccb804406a/pyang-2.7.1-py2.py3-none-any.whl", hash = "sha256:eadff4c0a37cbdd509c231b1bd6c3b322ae60cf971a22cc268c60a6f82241a1d", size = 598508, upload-time = "2025-08-29T07:37:52.784Z" },
+]
+
+[[package]]
+name = "pyangbind"
+version = "0.8.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "bitarray" },
+    { name = "enum34" },
+    { name = "lxml" },
+    { name = "pyang" },
+    { name = "regex" },
+    { name = "six" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/2e/20/7b3f2de320d120e845bce141148a23522fccb089b76ae0c76b5d5623d515/pyangbind-0.8.1.tar.gz", hash = "sha256:f5e8f42d2bf123f4aeba552f6c33b2d6dfafd3e1c37bff2d273fe935779127cf", size = 48646, upload-time = "2018-05-16T20:40:12.765Z" }
 
 [[package]]
 name = "pycparser"
@@ -1318,6 +1353,9 @@ dependencies = [
 ]
 
 [package.optional-dependencies]
+container = [
+    { name = "pyangbind" },
+]
 testing = [
     { name = "deepdiff" },
     { name = "mockredispy" },
@@ -1354,6 +1392,7 @@ requires-dist = [
     { name = "pexpect", specifier = ">=4.8.0" },
     { name = "prettyprinter", specifier = ">=0.18.0" },
     { name = "protobuf" },
+    { name = "pyangbind", marker = "extra == 'container'", specifier = "==0.8.1" },
     { name = "pyfakefs", marker = "extra == 'testing'" },
     { name = "pyroute2", specifier = ">=0.7.7" },
     { name = "pytest", marker = "extra == 'testing'" },
@@ -1373,7 +1412,7 @@ requires-dist = [
     { name = "www-authenticate", specifier = "==0.9.2" },
     { name = "xmltodict", specifier = "==0.12.0" },
 ]
-provides-extras = ["testing"]
+provides-extras = ["testing", "container"]
 
 [[package]]
 name = "sonic-yang-mgmt"
