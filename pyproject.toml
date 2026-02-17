@@ -68,15 +68,13 @@ dependencies = [
     "lazy-object-proxy",
     "six>=1.16.0",
     "scp==0.14.5",
-    # Required by Bazel rules_py, to build sdist-only wheels
-    "build",
-    "setuptools",
-    # Installed in sonic-slave.
-    # We need to comment them out whenever we lock uv
     "sonic-config-engine",
     "sonic-platform-common",
     "sonic-py-common",
     "sonic-yang-mgmt",
+    # Required by Bazel rules_py, to build sdist-only wheels
+    "build",
+    "setuptools",
 ]
 
 [project.urls]
@@ -295,7 +293,7 @@ testpaths = ["tests"]
 # Override for uv to use with Bazel
 [tool.uv.sources]
 sonic-config-engine = { path = "../sonic-buildimage/src/sonic-config-engine" }
-sonic-platform-common = { path = "../sonic-buildimage/src/sonic-platform-common" }
+sonic-platform-common = { path = "../sonic-platform-common" }
 sonic-py-common = { path = "../sonic-buildimage/src/sonic-py-common" }
 sonic-yang-mgmt = { path = "../sonic-buildimage/src/sonic-yang-mgmt" }
     # package_data={

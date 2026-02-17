@@ -1,3 +1,197 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
 load("@gazelle//:def.bzl", "gazelle")
 
-gazelle(name = "gazelle", gazelle = "@multitool//tools/gazelle")
+# Generate targets from rules_py instead of rules_python.
+#
+# gazelle:map_kind py_library py_library @aspect_rules_py//py:defs.bzl
+# gazelle:map_kind py_binary py_binary @aspect_rules_py//py:defs.bzl
+# gazelle:map_kind py_test py_test @aspect_rules_py//py:defs.bzl
+
+# Make everyone depend on all deps
+#
+# gazelle:resolve_regexp py .* //:all_deps
+gazelle(
+    name = "gazelle",
+    gazelle = "@multitool//tools/gazelle",
+)
+
+# TODO BL: This should be a select per-platform
+py_library(
+    name = "platform_deps",
+    deps = [],
+)
+
+py_library(
+    name = "all_deps",
+    deps = [
+        # "@sonic_utilities_pip//:all_requirements",
+        "@sonic_utilities_pip//bcrypt",
+        "@sonic_utilities_pip//click",
+        "@sonic_utilities_pip//cryptography",
+        "@sonic_utilities_pip//urllib3",
+        "@sonic_utilities_pip//click_log",
+        "@sonic_utilities_pip//docker",
+        "@sonic_utilities_pip//docker_image_py",
+        "@sonic_utilities_pip//filelock",
+        "@sonic_utilities_pip//enlighten",
+        "@sonic_utilities_pip//ijson",
+        "@sonic_utilities_pip//ipaddress",
+        "@sonic_utilities_pip//protobuf",
+        "@sonic_utilities_pip//jinja2",
+        "@sonic_utilities_pip//jsondiff",
+        "@sonic_utilities_pip//jsonpatch",
+        "@sonic_utilities_pip//jsonpointer",
+        # TODO BL: Doesn't resolve -- sdist only?
+        # "@sonic_utilities_pip//m2crypto",
+        "@sonic_utilities_pip//natsort",
+        "@sonic_utilities_pip//netaddr",
+        "@sonic_utilities_pip//netifaces",
+        "@sonic_utilities_pip//paramiko",
+        "@sonic_utilities_pip//pexpect",
+        "@sonic_utilities_pip//semantic_version",
+        "@sonic_utilities_pip//prettyprinter",
+        "@sonic_utilities_pip//pyroute2",
+        "@sonic_utilities_pip//requests",
+        "@sonic_utilities_pip//tabulate",
+        "@sonic_utilities_pip//toposort",
+        "@sonic_utilities_pip//www_authenticate",
+        "@sonic_utilities_pip//xmltodict",
+        "@sonic_utilities_pip//lazy_object_proxy",
+        "@sonic_utilities_pip//six",
+        "@sonic_utilities_pip//scp",
+        "@sonic_utilities_pip//sonic_config_engine",
+        "@sonic_utilities_pip//sonic_platform_common",
+        "@sonic_utilities_pip//sonic_py_common",
+        "@sonic_utilities_pip//sonic_yang_mgmt",
+    ],
+    visibility = ["//:__subpackages__"],
+)
+
+# TODO BL: THis should be removed
+py_library(
+    name = "empty",
+    srcs = [],
+    visibility = ["//visibility:public"],
+)
+
+### Map dependencies to targets.
+###
+### gazelle:resolve py ansicon @sonic_utilities_pip//ansicon
+### gazelle:resolve py async_timeout @sonic_utilities_pip//async_timeout
+### gazelle:resolve py bcrypt @sonic_utilities_pip//bcrypt
+### gazelle:resolve py bitarray @sonic_utilities_pip//bitarray
+### gazelle:resolve py blessed @sonic_utilities_pip//blessed
+### gazelle:resolve py build @sonic_utilities_pip//build
+### gazelle:resolve py certifi @sonic_utilities_pip//certifi
+### gazelle:resolve py cffi @sonic_utilities_pip//cffi
+### gazelle:resolve py charset_normalizer @sonic_utilities_pip//charset_normalizer
+### gazelle:resolve py click_log @sonic_utilities_pip//click_log
+### gazelle:resolve py click @sonic_utilities_pip//click
+### gazelle:resolve py colorama @sonic_utilities_pip//colorama
+### gazelle:resolve py colorful @sonic_utilities_pip//colorful
+### gazelle:resolve py cryptography @sonic_utilities_pip//cryptography
+### gazelle:resolve py deepdiff @sonic_utilities_pip//deepdiff
+### gazelle:resolve py docker_image_py @sonic_utilities_pip//docker_image_py
+### gazelle:resolve py docker @sonic_utilities_pip//docker
+### gazelle:resolve py enlighten @sonic_utilities_pip//enlighten
+### gazelle:resolve py filelock @sonic_utilities_pip//filelock
+### gazelle:resolve py idna @sonic_utilities_pip//idna
+### gazelle:resolve py ijson @sonic_utilities_pip//ijson
+### gazelle:resolve py iniconfig @sonic_utilities_pip//iniconfig
+### gazelle:resolve py invoke @sonic_utilities_pip//invoke
+### gazelle:resolve py ipaddress @sonic_utilities_pip//ipaddress
+### gazelle:resolve py jinja2 @sonic_utilities_pip//jinja2
+### gazelle:resolve py jinxed @sonic_utilities_pip//jinxed
+### gazelle:resolve py jsondiff @sonic_utilities_pip//jsondiff
+### gazelle:resolve py jsonpatch @sonic_utilities_pip//jsonpatch
+### gazelle:resolve py jsonpointer @sonic_utilities_pip//jsonpointer
+### gazelle:resolve py lazy_object_proxy @sonic_utilities_pip//lazy_object_proxy
+### gazelle:resolve py lxml @sonic_utilities_pip//lxml
+### gazelle:resolve py m2crypto @sonic_utilities_pip//m2crypto
+### gazelle:resolve py markupsafe @sonic_utilities_pip//markupsafe
+### gazelle:resolve py mockredispy @sonic_utilities_pip//mockredispy
+### gazelle:resolve py natsort @sonic_utilities_pip//natsort
+### gazelle:resolve py netaddr @sonic_utilities_pip//netaddr
+### gazelle:resolve py netifaces @sonic_utilities_pip//netifaces
+### gazelle:resolve py orderly_set @sonic_utilities_pip//orderly_set
+### gazelle:resolve py packaging @sonic_utilities_pip//packaging
+### gazelle:resolve py paramiko @sonic_utilities_pip//paramiko
+### gazelle:resolve py pexpect @sonic_utilities_pip//pexpect
+### gazelle:resolve py pluggy @sonic_utilities_pip//pluggy
+### gazelle:resolve py prefixed @sonic_utilities_pip//prefixed
+### gazelle:resolve py prettyprinter @sonic_utilities_pip//prettyprinter
+### gazelle:resolve py protobuf @sonic_utilities_pip//protobuf
+### gazelle:resolve py psutil @sonic_utilities_pip//psutil
+### gazelle:resolve py ptyprocess @sonic_utilities_pip//ptyprocess
+### gazelle:resolve py pyangbind @sonic_utilities_pip//pyangbind
+### gazelle:resolve py pycparser @sonic_utilities_pip//pycparser
+### gazelle:resolve py pyfakefs @sonic_utilities_pip//pyfakefs
+### gazelle:resolve py pygments @sonic_utilities_pip//pygments
+### gazelle:resolve py pynacl @sonic_utilities_pip//pynacl
+### gazelle:resolve py pyproject_hooks @sonic_utilities_pip//pyproject_hooks
+### gazelle:resolve py pyroute2 @sonic_utilities_pip//pyroute2
+### gazelle:resolve py pytest @sonic_utilities_pip//pytest
+### gazelle:resolve py pywin32 @sonic_utilities_pip//pywin32
+### gazelle:resolve py pyyaml @sonic_utilities_pip//pyyaml
+### gazelle:resolve py redis @sonic_utilities_pip//redis
+### gazelle:resolve py regex @sonic_utilities_pip//regex
+### gazelle:resolve py requests @sonic_utilities_pip//requests
+### gazelle:resolve py responses @sonic_utilities_pip//responses
+### gazelle:resolve py scp @sonic_utilities_pip//scp
+### gazelle:resolve py semantic_version @sonic_utilities_pip//semantic_version
+### gazelle:resolve py setuptools @sonic_utilities_pip//setuptools
+### gazelle:resolve py six @sonic_utilities_pip//six
+### gazelle:resolve py tabulate @sonic_utilities_pip//tabulate
+### gazelle:resolve py toposort @sonic_utilities_pip//toposort
+### gazelle:resolve py urllib3 @sonic_utilities_pip//urllib3
+### gazelle:resolve py venv @sonic_utilities_pip//venv
+### gazelle:resolve py wcwidth @sonic_utilities_pip//wcwidth
+### gazelle:resolve py win_inet_pton @sonic_utilities_pip//win_inet_pton
+### gazelle:resolve py www_authenticate @sonic_utilities_pip//www_authenticate
+### gazelle:resolve py xmltodict @sonic_utilities_pip//xmltodict
+
+### SONiC targets. These have been overridden in MODULE.bazel, so we can safely map them to the hub aliases
+###
+### gazelle:resolve py sonic_utilities @sonic_utilities_pip//sonic_utilities
+### gazelle:resolve py sonic_config_engine @sonic_utilities_pip//sonic_config_engine
+### gazelle:resolve py sonic_platform_common @sonic_utilities_pip//sonic_platform_common
+### gazelle:resolve py sonic_py_common @sonic_utilities_pip//sonic_py_common
+### gazelle:resolve py sonic_yang_mgmt @sonic_utilities_pip//sonic_yang_mgmt
+### gazelle:resolve py sonic_yang @sonic_utilities_pip//sonic_yang_mgmt
+
+### Some sonic_config_engine modules are loaded from root, not from sonic_config_engine
+###
+### gazelle:resolve py openconfig_acl @sonic_utilities_pip//sonic_config_engine
+### gazelle:resolve py minigraph @sonic_utilities_pip//sonic_config_engine
+### gazelle:resolve py sonic_yang_cfg_generator @sonic_utilities_pip//sonic_config_engine
+### gazelle:resolve py portconfig @sonic_utilities_pip//sonic_config_engine
+
+### SONiC targets that we expect to be installed manually in the slave:
+###
+### gazelle:resolve py swsscommon @sonic_swss_common//pyext:swsscommon
+
+### In-source dependencies
+###
+### gazelle:resolve py mock_tables //tests/mock_tables
+
+### Platform-dependent dependencies
+###
+### gazelle:resolve py sonic_platform //:platform_deps
+### gazelle:resolve py sonic_platform_base //:platform_deps
+
+### Empty targets, just to see how many are left
+###
+### gazelle:resolve py yang //:empty
+### gazelle:resolve py dash_api //:empty
+### From protobuf
+### gazelle:resolve py google //:empty
+### gazelle:resolve py pkg_resources //:empty
+### gazelle:resolve py sonic_yang_ext //:empty
+### gazelle:resolve py jsonschema //:empty
+
+py_library(
+    name = "sonic-utilities",
+    srcs = ["setup.py"],
+    visibility = ["//:__subpackages__"],
+    deps = ["//:all_deps"],
+)
