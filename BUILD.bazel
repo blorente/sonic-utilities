@@ -6,15 +6,57 @@ load("@gazelle//:def.bzl", "gazelle")
 #
 # gazelle:map_kind py_library py_library @aspect_rules_py//py:defs.bzl
 # gazelle:map_kind py_binary py_binary @aspect_rules_py//py:defs.bzl
-# gazelle:map_kind py_test py_test //py_test_wrapper.bzl
+# gazelle:map_kind py_test py_test //:py_test_wrapper.bzl
 
 # Make everyone depend on all deps
 #
 # gazelle:resolve_regexp py .* //:all_deps
 
-# Override default resolution for in-source mappings
+# Override default resolution for in-source mappings, from `packages` in pyproject.toml
 #
+# gazelle:resolve_regexp py acl_loader.* //acl_loader
+# gazelle:resolve_regexp py clear.* //clear
+# gazelle:resolve_regexp py clear.plugins.* //clear/plugins
+# gazelle:resolve_regexp py clear.plugins.auto.* //clear/plugins/auto
+# gazelle:resolve_regexp py config.* //config
+# gazelle:resolve_regexp py config.plugins.* //config/plugins
+# gazelle:resolve_regexp py config.plugins.auto.* //config/plugins/auto
+# gazelle:resolve_regexp py connect.* //connect
+# gazelle:resolve_regexp py consutil.* //consutil
+# gazelle:resolve_regexp py counterpoll.* //counterpoll
+# gazelle:resolve_regexp py crm.* //crm
+# gazelle:resolve_regexp py debug.* //debug
+# gazelle:resolve_regexp py generic_config_updater.* //generic_config_updater
+# gazelle:resolve_regexp py dump.* //dump
+# gazelle:resolve_regexp py dump.plugins.* //dump/plugins
+# gazelle:resolve_regexp py pfcwd.* //pfcwd
+# gazelle:resolve_regexp py sfputil.* //sfputil
+# gazelle:resolve_regexp py ssdutil.* //ssdutil
+# gazelle:resolve_regexp py pfc.* //pfc
+# gazelle:resolve_regexp py psuutil.* //psuutil
+# gazelle:resolve_regexp py flow_counter_util.* //flow_counter_util
+# gazelle:resolve_regexp py fdbutil.* //fdbutil
+# gazelle:resolve_regexp py fwutil.* //fwutil
+# gazelle:resolve_regexp py pcieutil.* //pcieutil
+# gazelle:resolve_regexp py pddf_fanutil.* //pddf_fanutil
+# gazelle:resolve_regexp py pddf_psuutil.* //pddf_psuutil
+# gazelle:resolve_regexp py pddf_thermalutil.* //pddf_thermalutil
+# gazelle:resolve_regexp py pddf_ledutil.* //pddf_ledutil
+# gazelle:resolve_regexp py syslog_util.* //syslog_util
+# gazelle:resolve_regexp py rcli.* //rcli
+# gazelle:resolve_regexp py show.* //show
+# gazelle:resolve_regexp py show.interfaces.* //show/interfaces
+# gazelle:resolve_regexp py show.plugins.* //show/plugins
+# gazelle:resolve_regexp py show.plugins.auto.* //show/plugins/auto
+# gazelle:resolve_regexp py sonic_installer.* //sonic_installer
+# gazelle:resolve_regexp py sonic_installer.bootloader.* //sonic_installer/bootloader
+# gazelle:resolve_regexp py sonic_package_manager.* //sonic_package_manager
+# gazelle:resolve_regexp py sonic_package_manager.service_creator.* //sonic_package_manager/service_creator
+# gazelle:resolve_regexp py tests.* //tests
+# gazelle:resolve_regexp py undebug.* //undebug
 # gazelle:resolve_regexp py utilities_common.* //utilities_common
+# gazelle:resolve_regexp py watchdogutil.* //watchdogutil
+# gazelle:resolve_regexp py sonic_cli_gen.* //sonic_cli_gen
 # gazelle:resolve_regexp py mock_tables.* //tests/mock_tables
 gazelle(
     name = "gazelle",
@@ -31,7 +73,7 @@ py_library(
     name = "all_deps",
     visibility = ["//:__subpackages__"],
     deps = [
-        # "@sonic_utilities_pip//:all_requirements",
+        "//scripts:scripts_srcs",  # keep
         "@sonic_utilities_pip//bcrypt",
         "@sonic_utilities_pip//click",
         "@sonic_utilities_pip//cryptography",
