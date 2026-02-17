@@ -10,5 +10,8 @@ py_library(
         "mock_single_asic.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//utilities_common",
+    ],
 )

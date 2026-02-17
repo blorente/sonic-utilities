@@ -12,5 +12,8 @@ py_library(
         "services_validator.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//utilities_common",
+    ],
 )

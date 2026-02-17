@@ -1,63 +1,106 @@
-load("@aspect_rules_py//py:defs.bzl", "py_library", "py_test")
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+load("//:py_test_wrapper.bzl", "py_test")
 
 py_library(
     name = "conftest",
     testonly = True,
     srcs = ["conftest.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//config",
+        "//sonic_package_manager",
+        "//sonic_package_manager/service_creator",
+    ],
 )
 
 py_test(
     name = "test_cli",
     srcs = ["test_cli.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//sonic_package_manager",
+        "//tests",
+    ],
 )
 
 py_test(
     name = "test_constraint",
     srcs = ["test_constraint.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//sonic_package_manager",
+        "//tests",
+    ],
 )
 
 py_test(
     name = "test_database",
     srcs = ["test_database.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//sonic_package_manager",
+        "//tests",
+    ],
 )
 
 py_test(
     name = "test_manager",
     srcs = ["test_manager.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//sonic_package_manager",
+        "//tests",
+    ],
 )
 
 py_test(
     name = "test_manifest",
     srcs = ["test_manifest.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//sonic_package_manager",
+        "//tests",
+    ],
 )
 
 py_test(
     name = "test_metadata",
     srcs = ["test_metadata.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//sonic_package_manager",
+        "//tests",
+    ],
 )
 
 py_test(
     name = "test_reference",
     srcs = ["test_reference.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//sonic_package_manager",
+        "//tests",
+    ],
 )
 
 py_test(
     name = "test_registry",
     srcs = ["test_registry.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//sonic_package_manager",
+        "//tests",
+    ],
 )
 
 py_test(
     name = "test_service_creator",
     srcs = ["test_service_creator.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//sonic_package_manager",
+        "//sonic_package_manager/service_creator",
+        "//tests",
+    ],
 )

@@ -31,5 +31,7 @@ py_library(
         "util_base.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+    ],
 )

@@ -33,5 +33,8 @@ py_library(
         "vxlan_tunnel_map.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//dump",
+    ],
 )

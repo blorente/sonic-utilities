@@ -10,5 +10,10 @@ py_library(
         "utils.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//config",
+        "//sonic_cli_gen",
+        "//sonic_package_manager",
+    ],
 )

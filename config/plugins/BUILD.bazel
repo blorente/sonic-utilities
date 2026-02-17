@@ -4,7 +4,10 @@ py_binary(
     name = "mlnx",
     srcs = ["mlnx.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//utilities_common",
+    ],
 )
 
 py_library(
@@ -24,5 +27,10 @@ py_library(
         "sonic-trimming.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//config",
+        "//show/plugins",
+        "//utilities_common",
+    ],
 )

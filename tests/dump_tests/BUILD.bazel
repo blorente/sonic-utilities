@@ -1,4 +1,5 @@
-load("@aspect_rules_py//py:defs.bzl", "py_library", "py_test")
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+load("//:py_test_wrapper.bzl", "py_test")
 
 py_library(
     name = "dump_tests",
@@ -13,17 +14,30 @@ py_library(
 py_test(
     name = "dash_object_test",
     srcs = ["dash_object_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//dump",
+        "//dump/plugins",
+        "//utilities_common",
+    ],
 )
 
 py_test(
     name = "dump_state_test",
     srcs = ["dump_state_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//dump",
+        "//utilities_common",
+    ],
 )
 
 py_test(
     name = "match_engine_test",
     srcs = ["match_engine_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//dump",
+        "//utilities_common",
+    ],
 )

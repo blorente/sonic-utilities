@@ -4,5 +4,8 @@ py_library(
     name = "mock_platform_sfputil",
     srcs = ["mock_platform_sfputil.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//utilities_common",
+    ],
 )

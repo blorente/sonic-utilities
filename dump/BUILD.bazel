@@ -4,7 +4,12 @@ py_binary(
     name = "main",
     srcs = ["main.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//dump",
+        "//dump/plugins",
+        "//utilities_common",
+    ],
 )
 
 py_library(
@@ -18,5 +23,9 @@ py_library(
         "match_infra.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//dump/plugins",
+        "//utilities_common",
+    ],
 )

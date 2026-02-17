@@ -17,5 +17,8 @@ py_library(
         "sonic-trimming.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//utilities_common",
+    ],
 )

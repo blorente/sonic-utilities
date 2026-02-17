@@ -1,4 +1,5 @@
-load("@aspect_rules_py//py:defs.bzl", "py_library", "py_test")
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+load("//:py_test_wrapper.bzl", "py_test")
 
 py_library(
     name = "generic_config_updater",
@@ -7,65 +8,98 @@ py_library(
         "gutest_helpers.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//generic_config_updater",
+    ],
 )
 
 py_test(
     name = "change_applier_test",
     srcs = ["change_applier_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//generic_config_updater",
+    ],
 )
 
 py_test(
     name = "field_operation_validator_test",
     srcs = ["field_operation_validator_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//generic_config_updater",
+    ],
 )
 
 py_test(
     name = "gcu_feature_patch_application_test",
     srcs = ["gcu_feature_patch_application_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//generic_config_updater",
+    ],
 )
 
 py_test(
     name = "generic_updater_test",
     srcs = ["generic_updater_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//generic_config_updater",
+    ],
 )
 
 py_test(
     name = "gu_common_test",
     srcs = ["gu_common_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//generic_config_updater",
+    ],
 )
 
 py_test(
     name = "multiasic_change_applier_test",
     srcs = ["multiasic_change_applier_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//generic_config_updater",
+    ],
 )
 
 py_test(
     name = "multiasic_generic_updater_test",
     srcs = ["multiasic_generic_updater_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//generic_config_updater",
+    ],
 )
 
 py_test(
     name = "patch_sorter_test",
     srcs = ["patch_sorter_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//generic_config_updater",
+    ],
 )
 
 py_test(
     name = "service_validator_test",
     srcs = ["service_validator_test.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//generic_config_updater",
+    ],
 )
 
 py_test(
     name = "test_patch_sorter_get_value",
     srcs = ["test_patch_sorter_get_value.py"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//generic_config_updater",
+    ],
 )

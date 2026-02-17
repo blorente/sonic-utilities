@@ -4,7 +4,11 @@ py_binary(
     name = "main",
     srcs = ["main.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//tests/mock_tables",
+        "//utilities_common",
+    ],
 )
 
 py_binary(
@@ -58,5 +62,13 @@ py_library(
         "warm_restart.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//flow_counter_util",
+        "//sfputil",
+        "//syslog_util",
+        "//tests",
+        "//tests/mock_tables",
+        "//utilities_common",
+    ],
 )

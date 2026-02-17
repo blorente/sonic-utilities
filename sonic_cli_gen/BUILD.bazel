@@ -4,7 +4,10 @@ py_binary(
     name = "main",
     srcs = ["main.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//sonic_cli_gen",
+    ],
 )
 
 py_library(
@@ -16,5 +19,8 @@ py_library(
         "yang_parser.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//config",
+    ],
 )

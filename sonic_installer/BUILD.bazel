@@ -4,7 +4,11 @@ py_binary(
     name = "main",
     srcs = ["main.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//config",
+        "//utilities_common",
+    ],
 )
 
 py_library(
@@ -16,5 +20,9 @@ py_library(
         "main.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//config",
+        "//utilities_common",
+    ],
 )

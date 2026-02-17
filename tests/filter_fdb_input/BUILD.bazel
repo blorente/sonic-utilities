@@ -1,4 +1,5 @@
-load("@aspect_rules_py//py:defs.bzl", "py_library", "py_test")
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+load("//:py_test_wrapper.bzl", "py_test")
 
 py_library(
     name = "filter_fdb_input",

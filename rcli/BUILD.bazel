@@ -4,14 +4,20 @@ py_binary(
     name = "rexec",
     srcs = ["rexec.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//rcli",
+    ],
 )
 
 py_binary(
     name = "rshell",
     srcs = ["rshell.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//rcli",
+    ],
 )
 
 py_library(

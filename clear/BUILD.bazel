@@ -4,7 +4,14 @@ py_binary(
     name = "main",
     srcs = ["main.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//config",
+        "//config/plugins",
+        "//flow_counter_util",
+        "//show/plugins",
+        "//utilities_common",
+    ],
 )
 
 py_library(
@@ -18,5 +25,12 @@ py_library(
         "stp.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//config",
+        "//config/plugins",
+        "//flow_counter_util",
+        "//show/plugins",
+        "//utilities_common",
+    ],
 )

@@ -7,5 +7,10 @@ py_library(
         "portchannel.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//config",
+        "//sfputil",
+        "//utilities_common",
+    ],
 )

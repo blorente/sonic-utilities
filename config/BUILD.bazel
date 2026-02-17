@@ -4,7 +4,13 @@ py_binary(
     name = "main",
     srcs = ["main.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//config",
+        "//generic_config_updater",
+        "//tests/mock_tables",
+        "//utilities_common",
+    ],
 )
 
 py_binary(
@@ -44,5 +50,13 @@ py_library(
         "vxlan.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//flow_counter_util",
+        "//generic_config_updater",
+        "//sfputil",
+        "//syslog_util",
+        "//tests/mock_tables",
+        "//utilities_common",
+    ],
 )
