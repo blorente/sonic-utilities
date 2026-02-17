@@ -10,6 +10,11 @@ load("@gazelle//:def.bzl", "gazelle")
 # Make everyone depend on all deps
 #
 # gazelle:resolve_regexp py .* //:all_deps
+
+# Override default resolution for in-source mappings
+#
+# gazelle:resolve_regexp py utilities_common.* //utilities_common
+# gazelle:resolve_regexp py mock_tables.* //tests/mock_tables
 gazelle(
     name = "gazelle",
     gazelle = "@multitool//tools/gazelle",
@@ -23,6 +28,7 @@ py_library(
 
 py_library(
     name = "all_deps",
+    visibility = ["//:__subpackages__"],
     deps = [
         # "@sonic_utilities_pip//:all_requirements",
         "@sonic_utilities_pip//bcrypt",
@@ -64,7 +70,6 @@ py_library(
         "@sonic_utilities_pip//sonic_py_common",
         "@sonic_utilities_pip//sonic_yang_mgmt",
     ],
-    visibility = ["//:__subpackages__"],
 )
 
 # TODO BL: THis should be removed
@@ -170,9 +175,6 @@ py_library(
 ###
 ### gazelle:resolve py swsscommon @sonic_swss_common//pyext:swsscommon
 
-### In-source dependencies
-###
-### gazelle:resolve py mock_tables //tests/mock_tables
 
 ### Platform-dependent dependencies
 ###
