@@ -21,9 +21,9 @@ py_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
-        "//utilities_common",
     ],
 )
 
@@ -32,12 +32,11 @@ py_test(
     srcs = ["aaa_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
-        "//connect",
         "//show",
         "//tests",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -66,8 +65,8 @@ py_test(
     srcs = ["aclshow_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -76,11 +75,11 @@ py_test(
     srcs = ["asic_sdk_health_event_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -89,8 +88,8 @@ py_test(
     srcs = ["bgp_commands_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -99,10 +98,10 @@ py_test(
     srcs = ["bgp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -111,11 +110,10 @@ py_test(
     srcs = ["buffer_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
-        "//connect",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -133,11 +131,10 @@ py_test(
     srcs = ["chassis_modules_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -156,13 +153,13 @@ py_test(
     srcs = ["cli_autogen_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//config/plugins",
         "//show",
         "//show/plugins",
         "//sonic_cli_gen",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -181,10 +178,10 @@ py_test(
     srcs = ["cli_sessions_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -193,9 +190,9 @@ py_test(
     srcs = ["config_an_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -204,9 +201,9 @@ py_test(
     srcs = ["config_dpb_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -215,9 +212,9 @@ py_test(
     srcs = ["config_fabric_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -236,9 +233,9 @@ py_test(
     srcs = ["config_int_ip_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -247,9 +244,9 @@ py_test(
     srcs = ["config_int_mtu_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -258,9 +255,9 @@ py_test(
     srcs = ["config_int_name_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -269,9 +266,9 @@ py_test(
     srcs = ["config_lt_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -290,9 +287,8 @@ py_test(
     srcs = ["config_mgmt_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -311,12 +307,10 @@ py_test(
     srcs = ["config_nvidia_bluefield_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//config/plugins",
-        "//debug",
-        "//dump",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -325,10 +319,10 @@ py_test(
     srcs = ["config_override_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//generic_config_updater",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -337,12 +331,11 @@ py_test(
     srcs = ["config_snmp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
         "//config",
-        "//connect",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -351,11 +344,10 @@ py_test(
     srcs = ["config_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
-        "//connect",
         "//generic_config_updater",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -364,9 +356,9 @@ py_test(
     srcs = ["config_xcvr_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -375,11 +367,10 @@ py_test(
     srcs = ["console_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//consutil",
         "//tests",
-        "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -388,9 +379,9 @@ py_test(
     srcs = ["copp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -399,9 +390,8 @@ py_test(
     srcs = ["coredump_gen_handler_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -410,9 +400,9 @@ py_test(
     srcs = ["counterpoll_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//counterpoll",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -421,9 +411,9 @@ py_test(
     srcs = ["crm_dash_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//crm",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -432,9 +422,9 @@ py_test(
     srcs = ["crm_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//crm",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -443,9 +433,9 @@ py_test(
     srcs = ["db_migrator_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -465,8 +455,8 @@ py_test(
     srcs = ["decode_syseeprom_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -475,10 +465,10 @@ py_test(
     srcs = ["dhcp_rate_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -496,10 +486,10 @@ py_test(
     srcs = ["dns_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -508,8 +498,8 @@ py_test(
     srcs = ["dropconfig_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -518,10 +508,10 @@ py_test(
     srcs = ["drops_group_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -539,10 +529,10 @@ py_test(
     srcs = ["ecn_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -572,11 +562,11 @@ py_test(
     srcs = ["fast_linkup_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//show/interfaces",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -585,8 +575,8 @@ py_test(
     srcs = ["fast_reboot_dump_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -623,9 +613,9 @@ py_test(
     srcs = ["feature_test.py"],
     deps = [
         "//:all_deps",
-        "//connect",
+        "//:common",
+        "//config",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -643,10 +633,10 @@ py_test(
     srcs = ["fgnhg_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -655,9 +645,9 @@ py_test(
     srcs = ["fibshow_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -676,10 +666,10 @@ py_test(
     srcs = ["fine_grained_ecmp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -688,8 +678,8 @@ py_test(
     srcs = ["flock_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -698,12 +688,12 @@ py_test(
     srcs = ["flow_counter_stats_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
         "//config",
         "//flow_counter_util",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -732,10 +722,10 @@ py_test(
     srcs = ["hash_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -744,9 +734,9 @@ py_test(
     srcs = ["icmp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -805,9 +795,9 @@ py_test(
     srcs = ["installer_dependency_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//sonic_installer",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -826,10 +816,10 @@ py_test(
     srcs = ["interfaces_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -859,11 +849,10 @@ py_test(
     srcs = ["ip_config_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
-        "//connect",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -891,9 +880,9 @@ py_test(
     srcs = ["ip_show_routes_voq_chassis_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -902,10 +891,10 @@ py_test(
     srcs = ["ipv6_link_local_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -914,8 +903,8 @@ py_test(
     srcs = ["kdump_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -924,8 +913,8 @@ py_test(
     srcs = ["kube_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -934,10 +923,10 @@ py_test(
     srcs = ["ldap_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -956,8 +945,8 @@ py_test(
     srcs = ["lldp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -966,10 +955,10 @@ py_test(
     srcs = ["loopback_action_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -978,10 +967,10 @@ py_test(
     srcs = ["mclag_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -990,8 +979,8 @@ py_test(
     srcs = ["memory_check_handler_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1000,8 +989,8 @@ py_test(
     srcs = ["memory_threshold_check_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1010,10 +999,10 @@ py_test(
     srcs = ["mmuconfig_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1022,10 +1011,10 @@ py_test(
     srcs = ["mpls_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1080,10 +1069,10 @@ py_test(
     srcs = ["multi_asic_pfc_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//pfc",
         "//tests",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -1092,8 +1081,8 @@ py_test(
     srcs = ["multi_asic_pgdropstat_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1102,9 +1091,9 @@ py_test(
     srcs = ["multi_asic_queue_counter_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1134,11 +1123,11 @@ py_test(
     srcs = ["muxcable_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -1147,10 +1136,9 @@ py_test(
     srcs = ["nat_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
-        "//connect",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1159,8 +1147,8 @@ py_test(
     srcs = ["neighbor_advertiser_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1178,10 +1166,10 @@ py_test(
     srcs = ["nvgre_tunnel_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1200,10 +1188,10 @@ py_test(
     srcs = ["passw_hardening_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1212,11 +1200,11 @@ py_test(
     srcs = ["pbh_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1245,10 +1233,10 @@ py_test(
     srcs = ["pfc_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//pfc",
         "//tests",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -1257,12 +1245,12 @@ py_test(
     srcs = ["pfcstat_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
-        "//pfc",
+        "//pfcwd",
         "//show",
         "//tests",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -1271,10 +1259,10 @@ py_test(
     srcs = ["pfcwd_test.py"],
     deps = [
         "//:all_deps",
-        "//pfc",
+        "//:common",
+        "//pfcwd",
         "//tests",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -1283,11 +1271,11 @@ py_test(
     srcs = ["pgdropstat_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1296,9 +1284,8 @@ py_test(
     srcs = ["port2alias_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -1307,11 +1294,10 @@ py_test(
     srcs = ["portchannel_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
-        "//connect",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1320,10 +1306,10 @@ py_test(
     srcs = ["portstat_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1332,8 +1318,8 @@ py_test(
     srcs = ["psushow_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1352,10 +1338,10 @@ py_test(
     srcs = ["queue_counter_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1364,9 +1350,9 @@ py_test(
     srcs = ["queuestat_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1375,11 +1361,11 @@ py_test(
     srcs = ["radius_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -1436,11 +1422,10 @@ py_test(
     srcs = ["sflow_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
-        "//connect",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1449,9 +1434,9 @@ py_test(
     srcs = ["sfp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1460,9 +1445,9 @@ py_test(
     srcs = ["sfputil_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//sfputil",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1491,9 +1476,9 @@ py_test(
     srcs = ["show_bfd_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1520,9 +1505,9 @@ py_test(
     srcs = ["show_bmp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1541,9 +1526,9 @@ py_test(
     srcs = ["show_event_counters_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1582,9 +1567,9 @@ py_test(
     srcs = ["show_mirror_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//acl_loader",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1613,9 +1598,9 @@ py_test(
     srcs = ["show_run_bgp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1624,12 +1609,12 @@ py_test(
     srcs = ["show_snmp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
         "//config",
         "//show",
         "//tests",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -1648,9 +1633,9 @@ py_test(
     srcs = ["show_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1659,9 +1644,9 @@ py_test(
     srcs = ["show_vnet_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1670,10 +1655,10 @@ py_test(
     srcs = ["show_vnet_vxlan_cli_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//show",
         "//tests",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -1709,8 +1694,8 @@ py_test(
     srcs = ["sonic_bootchart_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1719,8 +1704,8 @@ py_test(
     srcs = ["sonic_error_report_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1729,9 +1714,9 @@ py_test(
     srcs = ["sonic_kdump_config_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//sonic_installer",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1740,8 +1725,8 @@ py_test(
     srcs = ["srv6stat_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1760,10 +1745,10 @@ py_test(
     srcs = ["static_routes_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1772,11 +1757,10 @@ py_test(
     srcs = ["storm_control_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
-        "//connect",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1785,10 +1769,10 @@ py_test(
     srcs = ["stp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1797,10 +1781,10 @@ py_test(
     srcs = ["subintf_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1809,10 +1793,10 @@ py_test(
     srcs = ["suppress_pending_fib_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1831,8 +1815,8 @@ py_test(
     srcs = ["switchstat_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1841,10 +1825,9 @@ py_test(
     srcs = ["synchronous_mode_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
-        "//connect",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1853,10 +1836,10 @@ py_test(
     srcs = ["syslog_multi_asic_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1865,11 +1848,11 @@ py_test(
     srcs = ["syslog_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//syslog_util",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1888,8 +1871,8 @@ py_test(
     srcs = ["techsupport_cleanup_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1919,8 +1902,8 @@ py_test(
     srcs = ["test_chassis.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1939,8 +1922,8 @@ py_test(
     srcs = ["test_module.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1959,8 +1942,8 @@ py_test(
     srcs = ["test_util_base.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -1969,12 +1952,12 @@ py_test(
     srcs = ["tpid_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
         "//config",
         "//show",
         "//tests",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -1983,10 +1966,10 @@ py_test(
     srcs = ["trimming_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -2006,10 +1989,9 @@ py_test(
     srcs = ["validated_config_db_connector_test.py"],
     deps = [
         "//:all_deps",
-        "//connect",
+        "//:common",
         "//generic_config_updater",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -2018,10 +2000,10 @@ py_test(
     srcs = ["vlan_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -2039,10 +2021,10 @@ py_test(
     srcs = ["vnet_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -2051,10 +2033,10 @@ py_test(
     srcs = ["vrf_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -2063,9 +2045,9 @@ py_test(
     srcs = ["vrrp_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -2074,11 +2056,10 @@ py_test(
     srcs = ["vxlan_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
-        "//connect",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -2107,10 +2088,10 @@ py_test(
     srcs = ["wred_queue_counter_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//clear",
         "//show",
         "//tests",
-        "//utilities_common",
     ],
 )
 
@@ -2119,9 +2100,8 @@ py_test(
     srcs = ["yang_config_validation_test.py"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//config",
-        "//connect",
         "//tests",
-        "//utilities_common",
     ],
 )

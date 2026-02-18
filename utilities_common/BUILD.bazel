@@ -1,5 +1,16 @@
 load("@aspect_rules_py//py:defs.bzl", "py_library")
 
+# In Bazel, globs don't traverse package boundaries,
+# so this BUILD file makes it impossible to glob dump from outside.
+# This target is for //:common, so that it can depend on the srcs in dump without globbing them.
+filegroup(
+    name = "srcs",
+    srcs = glob([
+        "**/*.py",
+    ]),
+    visibility = ["//:__subpackages__"],
+)
+
 py_library(
     name = "utilities_common",
     srcs = [
@@ -33,5 +44,6 @@ py_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
+        "//:common",
     ],
 )

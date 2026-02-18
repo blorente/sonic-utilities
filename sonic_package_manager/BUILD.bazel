@@ -6,8 +6,34 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//sonic_package_manager",
+        "//sonic_package_manager:sonic_package_manager_srcs",
     ],
+)
+
+# There are dependency cycles between this and other packages (e.g. sonic_package_manager_srcs).
+# This intermediate target breaks those cycles.
+py_library(
+    name = "sonic_package_manager_srcs",
+    srcs = [
+        "__init__.py",
+        "constraint.py",
+        "database.py",
+        "dockerapi.py",
+        "errors.py",
+        "logger.py",
+        "main.py",
+        "manager.py",
+        "manifest.py",
+        "metadata.py",
+        "package.py",
+        "progress.py",
+        "reference.py",
+        "registry.py",
+        "source.py",
+        "utils.py",
+        "version.py",
+    ],
+    visibility = ["//:__subpackages__"],
 )
 
 py_library(
@@ -36,6 +62,7 @@ py_library(
         "//:all_deps",
         "//config",
         "//sonic_cli_gen",
+        "//sonic_package_manager:sonic_package_manager_srcs",
         "//sonic_package_manager/service_creator",
     ],
 )

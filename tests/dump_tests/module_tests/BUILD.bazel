@@ -12,9 +12,7 @@ py_test(
     srcs = ["acl_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -23,9 +21,7 @@ py_test(
     srcs = ["copp_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -34,9 +30,7 @@ py_test(
     srcs = ["dash_acl_group_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -45,9 +39,7 @@ py_test(
     srcs = ["dash_acl_in_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -56,9 +48,7 @@ py_test(
     srcs = ["dash_acl_out_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -67,9 +57,7 @@ py_test(
     srcs = ["dash_acl_rule_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -78,9 +66,7 @@ py_test(
     srcs = ["dash_appliance_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -89,9 +75,7 @@ py_test(
     srcs = ["dash_eni_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -100,9 +84,7 @@ py_test(
     srcs = ["dash_prefix_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -111,9 +93,7 @@ py_test(
     srcs = ["dash_qos_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -122,9 +102,7 @@ py_test(
     srcs = ["dash_route_rule_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -133,9 +111,7 @@ py_test(
     srcs = ["dash_route_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -144,9 +120,7 @@ py_test(
     srcs = ["dash_vnet_mapping_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -155,9 +129,7 @@ py_test(
     srcs = ["dash_vnet_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -166,9 +138,7 @@ py_test(
     srcs = ["evpn_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -177,9 +147,7 @@ py_test(
     srcs = ["fdb_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -188,9 +156,7 @@ py_test(
     srcs = ["interface_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -199,9 +165,7 @@ py_test(
     srcs = ["port_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -210,9 +174,7 @@ py_test(
     srcs = ["portchannel_member_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -221,9 +183,7 @@ py_test(
     srcs = ["portchannel_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -232,9 +192,7 @@ py_test(
     srcs = ["route_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -243,9 +201,7 @@ py_test(
     srcs = ["vlan_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -254,9 +210,7 @@ py_test(
     srcs = ["vxlan_tunnel_map_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -265,8 +219,6 @@ py_test(
     srcs = ["vxlan_tunnel_test.py"],
     deps = [
         "//:all_deps",
-        "//dump",
-        "//dump/plugins",
-        "//utilities_common",
+        "//:common",
     ],
 )

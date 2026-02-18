@@ -27,7 +27,7 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -37,7 +37,7 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -82,7 +82,7 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -100,17 +100,14 @@ py_binary(
     name = "generate_shutdown_order",
     srcs = ["generate_shutdown_order.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//sonic_package_manager"],
+    deps = ["//sonic_package_manager:sonic_package_manager_srcs"],
 )
 
 py_binary(
     name = "lag_keepalive",
     srcs = ["lag_keepalive.py"],
     visibility = ["//:__subpackages__"],
-    deps = [
-        "//:all_deps",
-        "//config",
-    ],
+    deps = ["//:all_deps"],
 )
 
 py_binary(
@@ -119,7 +116,7 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -129,7 +126,7 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -139,7 +136,7 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -156,8 +153,8 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -165,10 +162,7 @@ py_binary(
     name = "teamd_increase_retry_count",
     srcs = ["teamd_increase_retry_count.py"],
     visibility = ["//:__subpackages__"],
-    deps = [
-        "//:all_deps",
-        "//config",
-    ],
+    deps = ["//:all_deps"],
 )
 
 py_binary(
@@ -177,7 +171,7 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -260,10 +254,9 @@ py_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//config",
+        "//:common",
         "//generic_config_updater",
-        "//sonic_package_manager",
+        "//sonic_package_manager:sonic_package_manager_srcs",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )

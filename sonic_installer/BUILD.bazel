@@ -6,8 +6,7 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//config",
-        "//utilities_common",
+        "//:common",
     ],
 )
 
@@ -22,7 +21,6 @@ py_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//config",
-        "//utilities_common",
+        "//:common",
     ],
 )

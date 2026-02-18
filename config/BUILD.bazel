@@ -6,10 +6,9 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//config",
+        "//:common",
         "//generic_config_updater",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -52,11 +51,10 @@ py_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//flow_counter_util",
         "//generic_config_updater",
-        "//sfputil",
         "//syslog_util",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )

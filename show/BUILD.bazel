@@ -6,8 +6,8 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )
 
@@ -64,11 +64,10 @@ py_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
+        "//:common",
         "//flow_counter_util",
-        "//sfputil",
         "//syslog_util",
         "//tests",
         "//tests/mock_tables",
-        "//utilities_common",
     ],
 )

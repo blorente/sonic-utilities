@@ -6,11 +6,10 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//config",
+        "//:common",
         "//config/plugins",
         "//flow_counter_util",
         "//show/plugins",
-        "//utilities_common",
     ],
 )
 
@@ -27,10 +26,9 @@ py_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//config",
+        "//:common",
         "//config/plugins",
         "//flow_counter_util",
         "//show/plugins",
-        "//utilities_common",
     ],
 )

@@ -9,6 +9,6 @@ py_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//utilities_common",
+        "//:common",
     ],
 )
