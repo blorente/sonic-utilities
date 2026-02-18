@@ -25,7 +25,6 @@ py_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//dump/plugins",
         "//utilities_common",
     ],
 )
