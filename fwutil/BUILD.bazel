@@ -4,7 +4,10 @@ py_binary(
     name = "main",
     srcs = ["main.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//fwutil",
+    ],
 )
 
 py_library(

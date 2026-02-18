@@ -7,6 +7,7 @@ py_binary(
     deps = [
         "//:all_deps",
         "//:common",
+        "//clear",
         "//config/plugins",
         "//flow_counter_util",
         "//show/plugins",

@@ -11,5 +11,8 @@ py_library(
         "uboot.py",
     ],
     visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
+    deps = [
+        "//:all_deps",
+        "//sonic_installer",
+    ],
 )

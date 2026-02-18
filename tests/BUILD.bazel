@@ -24,6 +24,7 @@ py_library(
         "//:common",
         "//config",
         "//show",
+        "//tests",
     ],
 )
 

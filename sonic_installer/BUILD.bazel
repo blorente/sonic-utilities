@@ -7,6 +7,8 @@ py_binary(
     deps = [
         "//:all_deps",
         "//:common",
+        "//sonic_installer",
+        "//sonic_installer/bootloader",
     ],
 )
 
@@ -22,5 +24,6 @@ py_library(
     deps = [
         "//:all_deps",
         "//:common",
+        "//sonic_installer/bootloader",
     ],
 )

@@ -38,6 +38,7 @@ py_test(
     deps = [
         "//:all_deps",
         "//generic_config_updater",
+        "//tests",
     ],
 )
 
@@ -47,6 +48,7 @@ py_test(
     deps = [
         "//:all_deps",
         "//generic_config_updater",
+        "//tests",
     ],
 )
 
@@ -56,6 +58,7 @@ py_test(
     deps = [
         "//:all_deps",
         "//generic_config_updater",
+        "//tests",
     ],
 )
 
@@ -83,6 +86,7 @@ py_test(
     deps = [
         "//:all_deps",
         "//generic_config_updater",
+        "//tests",
     ],
 )
 

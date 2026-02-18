@@ -17,6 +17,7 @@ py_test(
     deps = [
         "//:all_deps",
         "//:common",
+        "//tests",
     ],
 )
 
@@ -26,6 +27,7 @@ py_test(
     deps = [
         "//:all_deps",
         "//:common",
+        "//tests",
     ],
 )
 
@@ -35,5 +37,6 @@ py_test(
     deps = [
         "//:all_deps",
         "//:common",
+        "//tests",
     ],
 )
