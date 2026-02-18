@@ -1,6 +1,8 @@
-load("@aspect_rules_py//py:defs.bzl", _py_test = "py_test")
+load("@rules_python_pytest//python_pytest:defs.bzl", "py_pytest_test")
 
+# TODO: Replace with rules_py version whenever we migrate to absolute paths.
 def py_test(name, **kwargs):
-    # TODO BL: this is obvioulsy bad and should be dealt with.
-    kwargs["package_collisions"] = "ignore"
-    _py_test(name, **kwargs)
+    py_pytest_test(
+        name = name,
+        **kwargs
+    )

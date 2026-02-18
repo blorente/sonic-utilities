@@ -160,7 +160,6 @@ py_library(
         "@sonic_utilities_pip//jsonpointer",
         # TODO BL: Doesn't resolve -- sdist only?
         # "@sonic_utilities_pip//m2crypto",
-        "@sonic_utilities_pip//mock",
         "@sonic_utilities_pip//natsort",
         "@sonic_utilities_pip//netaddr",
         "@sonic_utilities_pip//netifaces",
@@ -181,9 +180,12 @@ py_library(
         "@sonic_utilities_pip//sonic_platform_common",
         "@sonic_utilities_pip//sonic_py_common",
         "@sonic_utilities_pip//sonic_yang_mgmt",
-        # Added manually, not in the pyproject.toml deps.
+        # Test dependencies
         "@sonic_utilities_pip//responses",
         "@sonic_utilities_pip//deepdiff",
+        "@sonic_utilities_pip//mock",
+        "@sonic_utilities_pip//mockredispy",
+        "@sonic_utilities_pip//pytest",
     ],
 )
 
