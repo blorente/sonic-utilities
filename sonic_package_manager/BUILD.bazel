@@ -6,63 +6,24 @@ py_binary(
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
-        "//sonic_package_manager:sonic_package_manager_srcs",
+        "//sonic_package_manager",
     ],
 )
 
-# There are dependency cycles between this and other packages (e.g. sonic_package_manager_srcs).
-# This intermediate target breaks those cycles.
-py_library(
-    name = "sonic_package_manager_srcs",
-    srcs = [
-        "__init__.py",
-        "constraint.py",
-        "database.py",
-        "dockerapi.py",
-        "errors.py",
-        "logger.py",
-        "main.py",
-        "manager.py",
-        "manifest.py",
-        "metadata.py",
-        "package.py",
-        "progress.py",
-        "reference.py",
-        "registry.py",
-        "source.py",
-        "utils.py",
-        "version.py",
-    ],
-    visibility = ["//:__subpackages__"],
-)
-
+# There are dependency cycles between this and service_creator.
+# This megatarget target breaks those cycles by globbing them in a single target.
+# gazelle:exclude service_creator
 py_library(
     name = "sonic_package_manager",
-    srcs = [
-        "__init__.py",
-        "constraint.py",
-        "database.py",
-        "dockerapi.py",
-        "errors.py",
-        "logger.py",
-        "main.py",
-        "manager.py",
-        "manifest.py",
-        "metadata.py",
-        "package.py",
-        "progress.py",
-        "reference.py",
-        "registry.py",
-        "source.py",
-        "utils.py",
-        "version.py",
-    ],
+    srcs = glob([
+        "*.py",
+        "service_creator/**/*.py",
+    ]),
+    imports = ["."],
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
         "//config",
         "//sonic_cli_gen",
-        "//sonic_package_manager:sonic_package_manager_srcs",
-        "//sonic_package_manager/service_creator",
     ],
 )

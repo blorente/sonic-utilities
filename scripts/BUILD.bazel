@@ -100,7 +100,7 @@ py_binary(
     name = "generate_shutdown_order",
     srcs = ["generate_shutdown_order.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//sonic_package_manager:sonic_package_manager_srcs"],
+    deps = ["//sonic_package_manager"],
 )
 
 py_binary(
@@ -256,7 +256,7 @@ py_library(
         "//:all_deps",
         "//:common",
         "//generic_config_updater",
-        "//sonic_package_manager:sonic_package_manager_srcs",
+        "//sonic_package_manager",
         "//tests/mock_tables",
     ],
 )

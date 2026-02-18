@@ -82,10 +82,10 @@ load("@gazelle//:def.bzl", "gazelle")
 # gazelle:resolve_regexp py ^sonic_installer\. //sonic_installer
 # gazelle:resolve_regexp py ^sonic_installer.bootloader$ //sonic_installer/bootloader
 # gazelle:resolve_regexp py ^sonic_installer.bootloader\. //sonic_installer/bootloader
-# gazelle:resolve_regexp py ^sonic_package_manager$ //sonic_package_manager:sonic_package_manager_srcs
-# gazelle:resolve_regexp py ^sonic_package_manager\. //sonic_package_manager:sonic_package_manager_srcs
-# gazelle:resolve_regexp py ^sonic_package_manager.service_creator$ //sonic_package_manager/service_creator
-# gazelle:resolve_regexp py ^sonic_package_manager.service_creator\. //sonic_package_manager/service_creator
+# gazelle:resolve_regexp py ^sonic_package_manager$ //sonic_package_manager
+# gazelle:resolve_regexp py ^sonic_package_manager\. //sonic_package_manager
+# gazelle:resolve_regexp py ^sonic_package_manager.service_creator$ //sonic_package_manager
+# gazelle:resolve_regexp py ^sonic_package_manager.service_creator\. //sonic_package_manager
 # gazelle:resolve_regexp py ^tests$ //tests
 # gazelle:resolve_regexp py ^tests\. //tests
 # gazelle:resolve_regexp py ^undebug$ //undebug
@@ -97,6 +97,8 @@ load("@gazelle//:def.bzl", "gazelle")
 # gazelle:resolve_regexp py ^mock_tables$ //tests/mock_tables
 # gazelle:resolve_regexp py ^mock_tables\. //tests/mock_tables
 
+# Targets that have to be globbed in //:common to avoid cycles
+#
 # gazelle:resolve_regexp py ^utilities_common$ //:common
 # gazelle:resolve_regexp py ^utilities_common\. //:common
 # gazelle:resolve_regexp py ^dump$ //:common

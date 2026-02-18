@@ -9,8 +9,7 @@ py_library(
     deps = [
         "//:all_deps",
         "//config",
-        "//sonic_package_manager:sonic_package_manager_srcs",
-        "//sonic_package_manager/service_creator",
+        "//sonic_package_manager",
     ],
 )
 
@@ -19,7 +18,7 @@ py_test(
     srcs = ["test_cli.py"],
     deps = [
         "//:all_deps",
-        "//sonic_package_manager:sonic_package_manager_srcs",
+        "//sonic_package_manager",
         "//tests",
     ],
 )
@@ -29,7 +28,7 @@ py_test(
     srcs = ["test_constraint.py"],
     deps = [
         "//:all_deps",
-        "//sonic_package_manager:sonic_package_manager_srcs",
+        "//sonic_package_manager",
         "//tests",
     ],
 )
@@ -39,7 +38,7 @@ py_test(
     srcs = ["test_database.py"],
     deps = [
         "//:all_deps",
-        "//sonic_package_manager:sonic_package_manager_srcs",
+        "//sonic_package_manager",
         "//tests",
     ],
 )
@@ -49,7 +48,7 @@ py_test(
     srcs = ["test_manager.py"],
     deps = [
         "//:all_deps",
-        "//sonic_package_manager:sonic_package_manager_srcs",
+        "//sonic_package_manager",
         "//tests",
     ],
 )
@@ -59,7 +58,7 @@ py_test(
     srcs = ["test_manifest.py"],
     deps = [
         "//:all_deps",
-        "//sonic_package_manager:sonic_package_manager_srcs",
+        "//sonic_package_manager",
         "//tests",
     ],
 )
@@ -69,7 +68,7 @@ py_test(
     srcs = ["test_metadata.py"],
     deps = [
         "//:all_deps",
-        "//sonic_package_manager:sonic_package_manager_srcs",
+        "//sonic_package_manager",
         "//tests",
     ],
 )
@@ -79,7 +78,7 @@ py_test(
     srcs = ["test_reference.py"],
     deps = [
         "//:all_deps",
-        "//sonic_package_manager:sonic_package_manager_srcs",
+        "//sonic_package_manager",
         "//tests",
     ],
 )
@@ -89,7 +88,7 @@ py_test(
     srcs = ["test_registry.py"],
     deps = [
         "//:all_deps",
-        "//sonic_package_manager:sonic_package_manager_srcs",
+        "//sonic_package_manager",
         "//tests",
     ],
 )
@@ -99,8 +98,7 @@ py_test(
     srcs = ["test_service_creator.py"],
     deps = [
         "//:all_deps",
-        "//sonic_package_manager:sonic_package_manager_srcs",
-        "//sonic_package_manager/service_creator",
+        "//sonic_package_manager",
         "//tests",
     ],
 )
