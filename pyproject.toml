@@ -75,6 +75,8 @@ dependencies = [
     # Required by Bazel rules_py, to build sdist-only wheels
     "build",
     "setuptools",
+    # Required for backwards compatibility
+    "mock",
 ]
 
 [project.urls]

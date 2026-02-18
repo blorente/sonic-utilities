@@ -84,8 +84,7 @@ uv.lockfile(
 )
 use_repo(uv, "sonic_utilities_pip")
 
-# Needed to fully resolve sonic-repositories
-# TODO BL: See if we can remove them
+# Needed to fully resolve sonic-repositories, sonic_config_engine, and sonic_yang_mgmt
 bazel_dep(name = "sonic-build-infra", version = "0.0.0")
 local_path_override(
     module_name = "sonic-build-infra",

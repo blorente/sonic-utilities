@@ -8,6 +8,12 @@ load("@gazelle//:def.bzl", "gazelle")
 # gazelle:map_kind py_binary py_binary @aspect_rules_py//py:defs.bzl
 # gazelle:map_kind py_test py_test //:py_test_wrapper.bzl
 
+# Respect relative imports in package mode
+#
+# gazelle:python_generation_mode package
+# gazelle:python_experimental_allow_relative_imports true
+# gazelle:python_generation_mode_per_file_include_init true
+
 # Make everyone depend on all deps
 #
 # gazelle:resolve_regexp py .* //:all_deps
@@ -177,6 +183,7 @@ py_library(
         # Added manually, not in the pyproject.toml deps.
         "@sonic_utilities_pip//responses",
         "@sonic_utilities_pip//deepdiff",
+        "@sonic_utilities_pip//mock",
     ],
 )
 
