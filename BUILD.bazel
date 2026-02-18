@@ -158,7 +158,7 @@ py_library(
         "@sonic_utilities_pip//jsondiff",
         "@sonic_utilities_pip//jsonpatch",
         "@sonic_utilities_pip//jsonpointer",
-        # TODO BL: Doesn't resolve -- sdist only?
+        # TODO: Needs swig
         # "@sonic_utilities_pip//m2crypto",
         "@sonic_utilities_pip//natsort",
         "@sonic_utilities_pip//netaddr",
@@ -186,6 +186,8 @@ py_library(
         "@sonic_utilities_pip//mock",
         "@sonic_utilities_pip//mockredispy",
         "@sonic_utilities_pip//pytest",
+        # Other SONiC dependencies
+        "@sonic_py_swsssdk//:swsssdk",
     ],
 )
 

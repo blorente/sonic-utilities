@@ -92,6 +92,7 @@ testing = [
 ]
 extra_build_deps = [
     "nose", # For mockredispy
+    "wheel", # For m2crypto
 ]
 
 # These deps are installed in the container, but not resolved with the rest of dependencies.

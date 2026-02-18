@@ -24,3 +24,9 @@ name = "mockredispy"
 build-dependencies = [
    { name = "nose" },
 ]
+
+[[package]]
+name = "m2crypto"
+build-dependencies = [
+   { name = "wheel" },
+]

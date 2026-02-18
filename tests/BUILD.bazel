@@ -1993,6 +1993,8 @@ py_test(
         "//:common",
         "//generic_config_updater",
         "//tests",
+        # Loaded via load_source
+        "//config",  # keep
     ],
 )
 
