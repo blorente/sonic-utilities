@@ -189,6 +189,12 @@ py_binary(
     deps = ["//:all_deps"],
 )
 
+filegroup(
+    name = "srcs",
+    srcs = glob(["**/*"]),
+    visibility = ["//:__subpackages__"],
+)
+
 # Lots of tests depend on scripts, so we want to add them to //:all_deps
 # However, //:scripts depends on //:all_deps, so we need this intermediate target to break the cycle
 # keep

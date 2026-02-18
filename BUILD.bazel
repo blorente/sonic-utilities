@@ -1,6 +1,8 @@
-load("@aspect_rules_py//py:defs.bzl", "py_library")
+load("@aspect_rules_py//py:defs.bzl", "py_library", "py_image_layer")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@gazelle//:def.bzl", "gazelle")
+load("@tar.bzl", "tar", "mutate")
+load("@sonic-build-infra//python:site_packages.bzl", "site_packages")
 
 # Generate targets from rules_py instead of rules_python.
 #
@@ -211,3 +213,86 @@ bzl_library(
     visibility = ["//visibility:public"],
     deps = ["@aspect_rules_py//py:defs"],
 )
+
+py_library(
+    name = "libs_in_wheel",
+    deps = [
+        "//:common",
+        "//:platform_deps",
+        "//acl_loader:acl_loader",
+        "//clear:clear",
+        "//clear/plugins:plugins",
+        "//clear/plugins/auto:auto",
+        "//config:config",
+        "//config/plugins:plugins",
+        "//config/plugins/auto:auto",
+        "//connect:connect",
+        "//consutil:consutil",
+        "//counterpoll:counterpoll",
+        "//crm:crm",
+        "//debug:debug",
+        "//dump:dump",
+        "//fdbutil:fdbutil",
+        "//flow_counter_util:flow_counter_util",
+        "//fwutil:fwutil",
+        "//gcu:gcu",
+        "//generic_config_updater:generic_config_updater",
+        "//pcieutil:pcieutil",
+        "//pddf_fanutil:pddf_fanutil",
+        "//pddf_ledutil:pddf_ledutil",
+        "//pddf_psuutil:pddf_psuutil",
+        "//pddf_thermalutil:pddf_thermalutil",
+        "//pfc:pfc",
+        "//pfcwd:pfcwd",
+        "//psuutil:psuutil",
+        "//rcli:rcli",
+        "//scripts:scripts",
+        "//scripts:scripts_srcs",
+        "//sfputil:sfputil",
+        "//show:show",
+        "//show/interfaces:interfaces",
+        "//show/plugins:plugins",
+        "//show/plugins/auto:auto",
+        "//sonic-utilities-data:sonic-utilities-data",
+        "//sonic_cli_gen:sonic_cli_gen",
+        "//sonic_installer:sonic_installer",
+        "//sonic_package_manager:sonic_package_manager",
+        "//ssdutil:ssdutil",
+        "//syslog_util:syslog_util",
+        "//undebug:undebug",
+        "//utilities_common:utilities_common",
+        "//watchdogutil:watchdogutil",
+    ],
+)
+
+tar(
+    name = "scripts_pkg",
+    srcs = [
+      "//scripts:srcs",
+    ],
+    mutate = mutate(
+        package_dir = "/usr/lib/python3/dist-packages",
+        strip_prefix = package_name(),
+    ),
+    visibility = ["//visibility:public"],
+)
+
+py_image_layer(
+  name = "libs_pkg",
+  binary = ":libs_in_wheel",
+  # mutate = mutate(
+  #     package_dir = "/usr/lib/python3/dist-packages",
+  #     strip_prefix = "install/lib/python3.11/site-packages",
+  # ),
+)
+
+site_packages(
+  name = "deps_dist",
+  srcs = [":all_deps"],
+  mutate = mutate(
+      package_dir = "/usr/lib/python3/dist-packages",
+      strip_prefix = "install/lib/python3.11/site-packages",
+  ),
+  visibility = ["//visibility:public"],
+)
+
