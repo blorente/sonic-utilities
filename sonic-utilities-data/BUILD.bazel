@@ -1,4 +1,6 @@
 load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
+load("@rules_deb//distroless:defs.bzl", "flatten")
+load("@tar.bzl", "tar", "mutate")
 
 py_binary(
     name = "generate_completions",
@@ -12,4 +14,25 @@ py_library(
     srcs = ["generate_completions.py"],
     visibility = ["//:__subpackages__"],
     deps = ["//:all_deps"],
+)
+
+
+tar(
+  name = "templates",
+  srcs = glob(["templates/**/*.j2"]),
+  mutate = mutate(
+    strip_prefix = package_name() + "/templates",
+    package_dir = "./usr/share/sonic/templates",
+  )
+)
+
+# TODO BL: Migrate console completions
+# build/*                             /etc/bash_completion.d/
+
+flatten(
+    name = "sonic-utilities-data_all_pkg",
+    tars = [
+      ":templates",
+    ],
+    visibility = ["//visibility:public"],
 )
