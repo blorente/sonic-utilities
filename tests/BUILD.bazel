@@ -746,7 +746,7 @@ py_test(
     srcs = ["installer_bootloader_aboot_test.py"],
     deps = [
         "//:all_deps",
-        "//sonic_installer/bootloader",
+        "//sonic_installer",
         "//tests",
     ],
 )
@@ -756,7 +756,7 @@ py_test(
     srcs = ["installer_bootloader_bootloader_test.py"],
     deps = [
         "//:all_deps",
-        "//sonic_installer/bootloader",
+        "//sonic_installer",
         "//tests",
     ],
 )
@@ -766,7 +766,7 @@ py_test(
     srcs = ["installer_bootloader_grub_test.py"],
     deps = [
         "//:all_deps",
-        "//sonic_installer/bootloader",
+        "//sonic_installer",
         "//tests",
     ],
 )
@@ -776,7 +776,7 @@ py_test(
     srcs = ["installer_bootloader_onie_test.py"],
     deps = [
         "//:all_deps",
-        "//sonic_installer/bootloader",
+        "//sonic_installer",
         "//tests",
     ],
 )
@@ -786,7 +786,7 @@ py_test(
     srcs = ["installer_bootloader_uboot_test.py"],
     deps = [
         "//:all_deps",
-        "//sonic_installer/bootloader",
+        "//sonic_installer",
         "//tests",
     ],
 )

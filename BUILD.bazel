@@ -86,8 +86,8 @@ load("@gazelle//:def.bzl", "gazelle")
 # gazelle:resolve_regexp py ^show.plugins.auto\. //show/plugins/auto
 # gazelle:resolve_regexp py ^sonic_installer$ //sonic_installer
 # gazelle:resolve_regexp py ^sonic_installer\. //sonic_installer
-# gazelle:resolve_regexp py ^sonic_installer.bootloader$ //sonic_installer/bootloader
-# gazelle:resolve_regexp py ^sonic_installer.bootloader\. //sonic_installer/bootloader
+# gazelle:resolve_regexp py ^sonic_installer.bootloader$ //sonic_installer
+# gazelle:resolve_regexp py ^sonic_installer.bootloader\. //sonic_installer
 # gazelle:resolve_regexp py ^sonic_package_manager$ //sonic_package_manager
 # gazelle:resolve_regexp py ^sonic_package_manager\. //sonic_package_manager
 # gazelle:resolve_regexp py ^sonic_package_manager.service_creator$ //sonic_package_manager

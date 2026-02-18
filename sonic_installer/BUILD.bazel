@@ -8,22 +8,21 @@ py_binary(
         "//:all_deps",
         "//:common",
         "//sonic_installer",
-        "//sonic_installer/bootloader",
     ],
 )
 
+# There are dependency cycles between this and ./booloader.
+# This megatarget target breaks those cycles by globbing them in a single target.
+# gazelle:exclude bootloader
 py_library(
     name = "sonic_installer",
-    srcs = [
-        "__init__.py",
-        "common.py",
-        "exception.py",
-        "main.py",
-    ],
+    srcs = glob([
+        "*.py",
+        "bootloader/**/*.py",
+    ]),
     visibility = ["//:__subpackages__"],
     deps = [
         "//:all_deps",
         "//:common",
-        "//sonic_installer/bootloader",
     ],
 )
