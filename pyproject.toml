@@ -2,7 +2,12 @@
 requires = ["setuptools", "setuptools-scm", "wheel", "pytest-runner", "fastentrypoints"]
 build-backend = "setuptools.build_meta"
 
-# TODO BL: If we find that we don't want to migrate this repo entirely to bazel, make this a shim
+# TODO(bazel-ready): Fully migrate this repo to pyproject.toml.
+# For now, this is a possibly incomplete shim, mirroring setup.py only so that we can run `uv lock` and lock the dependencies for Bazel.
+# However, if we ever intend to migrate this repository to Bazel completely, we should remove setup.py in favour of this pyprojec.toml file,
+# so that both Bazel and non-Bazel builds read from the same configuration file.
+# TODO(bazel-ready): Make the tests pass.
+# TODO(bazel-ready): Add auto-formatting of bazel files via buildifier
 [project]
 name = "sonic-utilities"
 version = "1.2"

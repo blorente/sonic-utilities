@@ -164,12 +164,6 @@ py_library(
     ],
 )
 
-# TODO BL: This should be a select per-platform
-py_library(
-    name = "platform_deps",
-    deps = [],
-)
-
 py_library(
     name = "all_deps",
     visibility = ["//:__subpackages__"],
@@ -191,8 +185,6 @@ py_library(
         "@sonic_utilities_pip//jsondiff",
         "@sonic_utilities_pip//jsonpatch",
         "@sonic_utilities_pip//jsonpointer",
-        # TODO: Needs swig
-        # "@sonic_utilities_pip//m2crypto",
         "@sonic_utilities_pip//natsort",
         "@sonic_utilities_pip//netaddr",
         "@sonic_utilities_pip//netifaces",
@@ -223,6 +215,12 @@ py_library(
         "@sonic_utilities_pip//pyangbind",
         # Other SONiC dependencies
         "@sonic_py_swsssdk//:swsssdk",
+        # TODO(bazel-ready): Implement support for m2crypto.
+        # This dependency is only distributed as an sdist, and needs swig in order to build itself.
+        # Instead of trying to migrate its build system to Bazel,
+        # for now we just take the prebuilt one from the bookworm debian repository.
+        # Of course, some tests won't pass until we add this dependency.
+        # "@sonic_utilities_pip//m2crypto",
     ],
 )
 
@@ -233,53 +231,48 @@ bzl_library(
     deps = ["@aspect_rules_py//py:defs"],
 )
 
-py_library(
-    name = "libs_in_wheel",
-    visibility = ["//:__subpackages__"],
-    deps = [
-        "//:common",
-        "//:platform_deps",
-        "//acl_loader",
-        "//clear",
-        "//clear/plugins",
-        "//clear/plugins/auto",
-        "//config",
-        "//config/plugins",
-        "//config/plugins/auto",
-        "//connect",
-        "//consutil",
-        "//counterpoll",
-        "//crm",
-        "//debug",
-        "//dump",
-        "//fdbutil",
-        "//flow_counter_util",
-        "//fwutil",
-        "//generic_config_updater",
-        "//pcieutil",
-        "//pddf_fanutil",
-        "//pddf_ledutil",
-        "//pddf_psuutil",
-        "//pddf_thermalutil",
-        "//pfc",
-        "//pfcwd",
-        "//psuutil",
-        "//rcli",
-        "//sfputil",
-        "//show",
-        "//show/interfaces",
-        "//show/plugins",
-        "//show/plugins/auto",
-        "//sonic_cli_gen",
-        "//sonic_installer",
-        "//sonic_package_manager",
-        "//ssdutil",
-        "//syslog_util",
-        "//undebug",
-        "//utilities_common",
-        "//watchdogutil",
-    ],
-)
+libs_in_wheel = [
+    "//:common",
+    "//acl_loader",
+    "//clear",
+    "//clear/plugins",
+    "//clear/plugins/auto",
+    "//config",
+    "//config/plugins",
+    "//config/plugins/auto",
+    "//connect",
+    "//consutil",
+    "//counterpoll",
+    "//crm",
+    "//debug",
+    "//dump",
+    "//fdbutil",
+    "//flow_counter_util",
+    "//fwutil",
+    "//generic_config_updater",
+    "//pcieutil",
+    "//pddf_fanutil",
+    "//pddf_ledutil",
+    "//pddf_psuutil",
+    "//pddf_thermalutil",
+    "//pfc",
+    "//pfcwd",
+    "//psuutil",
+    "//rcli",
+    "//sfputil",
+    "//show",
+    "//show/interfaces",
+    "//show/plugins",
+    "//show/plugins/auto",
+    "//sonic_cli_gen",
+    "//sonic_installer",
+    "//sonic_package_manager",
+    "//ssdutil",
+    "//syslog_util",
+    "//undebug",
+    "//utilities_common",
+    "//watchdogutil",
+]
 
 # Package containing all the script files.
 tar(
@@ -307,9 +300,12 @@ site_packages(
 # Python source packages from [tool.setuptools].packages in pyproject.toml.
 # Uses the same strip_prefix as deps_dist because aspect_rules_py installs
 # source packages into the same site-packages layout.
+#
+# TODO(bazel-ready): The interface with export_py_info should be merged into rules_py.
 site_packages(
     name = "libs_dist",
-    srcs = [":libs_in_wheel"],
+    srcs = libs_in_wheel,
+    exclude_filter = "external",
     mutate = mutate(
         package_dir = "/usr/lib/python3/dist-packages",
     ),
@@ -338,6 +334,8 @@ flatten(
         ":libs_dist",
         ":scripts_pkg",
         ":pkg_data",
+        "@bookworm//python3-m2crypto:data",
     ],
     visibility = ["//visibility:public"],
+    deduplicate = True,
 )

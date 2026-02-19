@@ -25,7 +25,7 @@ tar(
     ),
 )
 
-# TODO BL: Migrate console completions
+# Note: We haven't migrated console completions because they depend on having a prebuilt wheel, which we don't produce with Bazel yet.
 # build/*                             /etc/bash_completion.d/
 
 flatten(

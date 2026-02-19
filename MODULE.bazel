@@ -66,7 +66,7 @@ uv.override_requirement(
     target = "@sonic_yang_mgmt//:sonic-yang-mgmt",
     venv_name = "default",
 )
-# TODO: This is not supposed to be empty. We should replace it with a real implementation when we figure out sonic platforms
+# TODO(bazel-complete): This is not supposed to be empty. We should replace it with a real implementation when we figure out sonic platforms
 uv.override_requirement(
     hub_name = "sonic_utilities_pip",
     requirement = "sonic-platform-common",
@@ -127,3 +127,25 @@ local_path_override(
     module_name = "sonic-py-swsssdk",
     path = "../sonic-py-swsssdk"
 )
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# TODO(bazel-ready): For m2crypto. Please see comment in `//:all_deps`
+apt = use_extension("@rules_deb//apt:extensions.bzl", "apt")
+
+apt.sources_list(
+    architectures = ["amd64"],
+    components = ["main"],
+    suites = ["bookworm", "bookworm-updates"],
+    uris = ["https://snapshot.debian.org/archive/debian/20251001T023456Z"],
+)
+
+apt.install(
+    dependency_set = "bookworm",
+    suites = ["bookworm", "bookworm-updates"],
+    packages = [
+        "python3-m2crypto",
+    ],
+)
+
+use_repo(apt, "bookworm")
