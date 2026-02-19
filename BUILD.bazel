@@ -1,4 +1,4 @@
-load("@aspect_rules_py//py:defs.bzl", "py_image_layer", "py_library")
+load("@aspect_rules_py//py:defs.bzl", "py_library")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@gazelle//:def.bzl", "gazelle")
 load("@rules_deb//distroless:defs.bzl", "flatten")
@@ -20,6 +20,11 @@ load("@tar.bzl", "mutate", "tar")
 # Make everyone depend on all deps
 #
 # gazelle:resolve_regexp py .* //:all_deps
+
+# Ignore gcu and sonic-utilities-data for, they're their own wheels.
+#
+# gazelle:exclude gcu
+# gazelle:exclude sonic-utilities-data
 
 # Override default resolution for in-source mappings, from `packages` in pyproject.toml
 #
@@ -217,13 +222,6 @@ py_library(
     ],
 )
 
-# TODO BL: THis should be removed
-py_library(
-    name = "empty",
-    srcs = [],
-    visibility = ["//visibility:public"],
-)
-
 py_library(
     name = "sonic-utilities",
     srcs = ["setup.py"],
@@ -259,7 +257,6 @@ py_library(
         "//fdbutil",
         "//flow_counter_util",
         "//fwutil",
-        "//gcu",
         "//generic_config_updater",
         "//pcieutil",
         "//pddf_fanutil",
@@ -270,14 +267,11 @@ py_library(
         "//pfcwd",
         "//psuutil",
         "//rcli",
-        "//scripts",
-        "//scripts:scripts_srcs",
         "//sfputil",
         "//show",
         "//show/interfaces",
         "//show/plugins",
         "//show/plugins/auto",
-        "//sonic-utilities-data",
         "//sonic_cli_gen",
         "//sonic_installer",
         "//sonic_package_manager",
@@ -289,6 +283,7 @@ py_library(
     ],
 )
 
+# Package containing all the script files.
 tar(
     name = "scripts_pkg",
     srcs = [
@@ -301,15 +296,8 @@ tar(
     visibility = ["//visibility:public"],
 )
 
-py_image_layer(
-    name = "libs_pkg",
-    binary = ":libs_in_wheel",
-    # mutate = mutate(
-    #     package_dir = "/usr/lib/python3/dist-packages",
-    #     strip_prefix = "install/lib/python3.11/site-packages",
-    # ),
-)
-
+# Package containing dependencies as per pyproject.toml
+# We rename the output directories because that is where a wheel would be installed.
 site_packages(
     name = "deps_dist",
     srcs = [":all_deps"],
@@ -321,54 +309,13 @@ site_packages(
 )
 
 # Python source packages from [tool.setuptools].packages in pyproject.toml.
-# Uses filegroup :srcs targets directly — avoids PyInfo transitive sources which would
-# pull in pip deps whose short-paths don't match strip_prefix anyway.
-tar(
+# Uses the same strip_prefix as deps_dist because aspect_rules_py installs
+# source packages into the same site-packages layout.
+site_packages(
     name = "libs_dist",
-    srcs = [
-        "//acl_loader:srcs",
-        "//clear:srcs",
-        "//clear/plugins:srcs",
-        "//clear/plugins/auto:srcs",
-        "//config:srcs",
-        "//config/plugins:srcs",
-        "//config/plugins/auto:srcs",
-        "//connect:srcs",
-        "//consutil:srcs",
-        "//counterpoll:srcs",
-        "//crm:srcs",
-        "//debug:srcs",
-        "//dump:srcs",
-        "//fdbutil:srcs",
-        "//flow_counter_util:srcs",
-        "//fwutil:srcs",
-        "//generic_config_updater:srcs",
-        "//pcieutil:srcs",
-        "//pddf_fanutil:srcs",
-        "//pddf_ledutil:srcs",
-        "//pddf_psuutil:srcs",
-        "//pddf_thermalutil:srcs",
-        "//pfc:srcs",
-        "//pfcwd:srcs",
-        "//psuutil:srcs",
-        "//rcli:srcs",
-        "//sfputil:srcs",
-        "//show:srcs",
-        "//show/interfaces:srcs",
-        "//show/plugins:srcs",
-        "//show/plugins/auto:srcs",
-        "//sonic_cli_gen:srcs",
-        "//sonic_installer:srcs",
-        "//sonic_package_manager:srcs",
-        "//ssdutil:srcs",
-        "//syslog_util:srcs",
-        "//undebug:srcs",
-        "//utilities_common:srcs",
-        "//watchdogutil:srcs",
-    ],
+    srcs = [":libs_in_wheel"],
     mutate = mutate(
         package_dir = "/usr/lib/python3/dist-packages",
-        strip_prefix = package_name(),
     ),
     visibility = ["//visibility:public"],
 )
@@ -388,27 +335,15 @@ tar(
     visibility = ["//visibility:public"],
 )
 
-# Combined tar of all wheel contents, mirroring pyproject.toml:
-#   [tool.setuptools].packages        → libs_dist
-#   [tool.setuptools].script-files    → scripts_pkg
+# Combined archive of all relevant sources.
+# When expanded into an image, it should replicate how a wheel would be installed.
 flatten(
     name = "dist",
     tars = [
-        ":libs_dist",
-        ":scripts_pkg",
-        ":pkg_data",
-    ],
-    visibility = ["//visibility:public"],
-)
-
-flatten(
-    name = "sonic_utilities_pkg",
-    tars = [
-        ":libs_dist",
         ":deps_dist",
+        ":libs_dist",
         ":scripts_pkg",
         ":pkg_data",
-        "//sonic-utilities-data:sonic-utilities-data_all_pkg",
     ],
     visibility = ["//visibility:public"],
 )

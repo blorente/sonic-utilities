@@ -69,7 +69,7 @@ uv.override_requirement(
 uv.override_requirement(
     hub_name = "sonic_utilities_pip",
     requirement = "sonic-platform-common",
-    target = "//:empty",
+    target = "//bazel:empty",
     venv_name = "default",
 )
 uv.override_requirement(
@@ -81,7 +81,7 @@ uv.override_requirement(
 uv.override_requirement(
     hub_name = "sonic_utilities_pip",
     requirement = "sonic-utilities",
-    target = "//:empty",
+    target = "//bazel:empty",
     venv_name = "default",
 )
 uv.unstable_annotate_requirements(

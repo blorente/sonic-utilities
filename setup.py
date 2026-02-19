@@ -7,10 +7,8 @@
 # https://stackoverflow.com/questions/18787036/difference-between-entry-points-console-scripts-and-scripts-in-setup-py
 from __future__ import print_function
 import sys
-# import fastentrypoints
 
 from setuptools import setup
-# import pkg_resources
 from packaging import version
 
 # sonic_dependencies, version requirement only supports '>='
@@ -21,6 +19,7 @@ sonic_dependencies = [
     'sonic-yang-mgmt',
 ]
 
+# TODO BL: figure out what we're going to do with scripts, whether we migrate them to pyproject or not.
 # for package in sonic_dependencies:
 #     try:
 #         package_dist = pkg_resources.get_distribution(package.split(">=")[0])
