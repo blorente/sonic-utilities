@@ -1,5 +1,14 @@
 load("@aspect_rules_py//py:defs.bzl", "py_library")
 
+filegroup(
+    name = "pkg_data",
+    srcs = [
+        "gcu_field_operation_validators.conf.json",
+        "gcu_services_validator.conf.json",
+    ],
+    visibility = ["//:__subpackages__"],
+)
+
 py_library(
     name = "generic_config_updater",
     srcs = [

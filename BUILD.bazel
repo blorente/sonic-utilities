@@ -1,6 +1,7 @@
 load("@aspect_rules_py//py:defs.bzl", "py_image_layer", "py_library")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@gazelle//:def.bzl", "gazelle")
+load("@rules_deb//distroless:defs.bzl", "flatten")
 load("@sonic-build-infra//python:site_packages.bzl", "site_packages")
 load("@tar.bzl", "mutate", "tar")
 
@@ -211,7 +212,6 @@ py_library(
         "@sonic_utilities_pip//pytest",
         "@sonic_utilities_pip//pyfakefs",
         "@sonic_utilities_pip//pyangbind",
-        "@sonic_utilities_pip//m2crypto",
         # Other SONiC dependencies
         "@sonic_py_swsssdk//:swsssdk",
     ],
@@ -317,5 +317,46 @@ site_packages(
         package_dir = "/usr/lib/python3/dist-packages",
         strip_prefix = "install/lib/python3.11/site-packages",
     ),
+    visibility = ["//visibility:public"],
+)
+
+# Python source packages from [tool.setuptools].packages in pyproject.toml.
+# Uses the same strip_prefix as deps_dist because aspect_rules_py installs
+# source packages into the same site-packages layout.
+site_packages(
+    name = "libs_dist",
+    srcs = [":libs_in_wheel"],
+    mutate = mutate(
+        package_dir = "/usr/lib/python3/dist-packages",
+        strip_prefix = "install/lib/python3.11/site-packages",
+    ),
+    visibility = ["//visibility:public"],
+)
+
+# Non-Python package data files from [tool.setuptools.package-data] in pyproject.toml.
+tar(
+    name = "pkg_data",
+    srcs = [
+        "//generic_config_updater:pkg_data",
+        "//show:pkg_data",
+        "//sonic_installer:pkg_data",
+    ],
+    mutate = mutate(
+        package_dir = "/usr/lib/python3/dist-packages",
+        strip_prefix = package_name(),
+    ),
+    visibility = ["//visibility:public"],
+)
+
+# Combined tar of all wheel contents, mirroring pyproject.toml:
+#   [tool.setuptools].packages        → libs_dist
+#   [tool.setuptools].script-files    → scripts_pkg
+flatten(
+    name = "dist",
+    tars = [
+        ":libs_dist",
+        ":scripts_pkg",
+        ":pkg_data",
+    ],
     visibility = ["//visibility:public"],
 )
