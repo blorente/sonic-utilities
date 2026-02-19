@@ -1,8 +1,8 @@
-load("@aspect_rules_py//py:defs.bzl", "py_library", "py_image_layer")
+load("@aspect_rules_py//py:defs.bzl", "py_image_layer", "py_library")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@gazelle//:def.bzl", "gazelle")
-load("@tar.bzl", "tar", "mutate")
 load("@sonic-build-infra//python:site_packages.bzl", "site_packages")
+load("@tar.bzl", "mutate", "tar")
 
 # Generate targets from rules_py instead of rules_python.
 #
@@ -95,6 +95,27 @@ load("@sonic-build-infra//python:site_packages.bzl", "site_packages")
 # gazelle:resolve_regexp py ^sonic_package_manager.service_creator$ //sonic_package_manager
 # gazelle:resolve_regexp py ^sonic_package_manager.service_creator\. //sonic_package_manager
 # gazelle:resolve_regexp py ^tests$ //tests
+#
+# Resolve test subpackages to their specific targets (before the generic ^tests\.)
+# gazelle:resolve_regexp py ^tests\.mock_tables //tests/mock_tables
+# gazelle:resolve_regexp py ^tests\.filter_fdb_input //tests/filter_fdb_input
+# gazelle:resolve_regexp py ^tests\.bgp_commands_input //tests/bgp_commands_input
+# gazelle:resolve_regexp py ^tests\.fdbshow_input //tests/fdbshow_input
+# gazelle:resolve_regexp py ^tests\.wm_input //tests/wm_input
+# gazelle:resolve_regexp py ^tests\.ecn_input //tests/ecn_input
+# gazelle:resolve_regexp py ^tests\.mmuconfig_input //tests/mmuconfig_input
+# gazelle:resolve_regexp py ^tests\.mocked_libs //tests/mocked_libs
+# gazelle:resolve_regexp py ^tests\.pfcwd_input //tests/pfcwd_input
+# gazelle:resolve_regexp py ^tests\.fibshow_input //tests/fibshow_input
+#
+# Resolve test peer file imports (test files importing other test files)
+# gazelle:resolve_regexp py ^tests\.ecn_test$ //tests:ecn_test
+# gazelle:resolve_regexp py ^tests\.mmuconfig_test$ //tests:mmuconfig_test
+#
+# Resolve test subpackage with nested structure
+# gazelle:resolve_regexp py ^tests\.generic_config_updater //tests/generic_config_updater
+#
+# Generic fallback for tests.*
 # gazelle:resolve_regexp py ^tests\. //tests
 # gazelle:resolve_regexp py ^undebug$ //undebug
 # gazelle:resolve_regexp py ^undebug\. //undebug
@@ -188,6 +209,9 @@ py_library(
         "@sonic_utilities_pip//mock",
         "@sonic_utilities_pip//mockredispy",
         "@sonic_utilities_pip//pytest",
+        "@sonic_utilities_pip//pyfakefs",
+        "@sonic_utilities_pip//pyangbind",
+        "@sonic_utilities_pip//m2crypto",
         # Other SONiC dependencies
         "@sonic_py_swsssdk//:swsssdk",
     ],
@@ -219,56 +243,56 @@ py_library(
     deps = [
         "//:common",
         "//:platform_deps",
-        "//acl_loader:acl_loader",
-        "//clear:clear",
-        "//clear/plugins:plugins",
-        "//clear/plugins/auto:auto",
-        "//config:config",
-        "//config/plugins:plugins",
-        "//config/plugins/auto:auto",
-        "//connect:connect",
-        "//consutil:consutil",
-        "//counterpoll:counterpoll",
-        "//crm:crm",
-        "//debug:debug",
-        "//dump:dump",
-        "//fdbutil:fdbutil",
-        "//flow_counter_util:flow_counter_util",
-        "//fwutil:fwutil",
-        "//gcu:gcu",
-        "//generic_config_updater:generic_config_updater",
-        "//pcieutil:pcieutil",
-        "//pddf_fanutil:pddf_fanutil",
-        "//pddf_ledutil:pddf_ledutil",
-        "//pddf_psuutil:pddf_psuutil",
-        "//pddf_thermalutil:pddf_thermalutil",
-        "//pfc:pfc",
-        "//pfcwd:pfcwd",
-        "//psuutil:psuutil",
-        "//rcli:rcli",
-        "//scripts:scripts",
+        "//acl_loader",
+        "//clear",
+        "//clear/plugins",
+        "//clear/plugins/auto",
+        "//config",
+        "//config/plugins",
+        "//config/plugins/auto",
+        "//connect",
+        "//consutil",
+        "//counterpoll",
+        "//crm",
+        "//debug",
+        "//dump",
+        "//fdbutil",
+        "//flow_counter_util",
+        "//fwutil",
+        "//gcu",
+        "//generic_config_updater",
+        "//pcieutil",
+        "//pddf_fanutil",
+        "//pddf_ledutil",
+        "//pddf_psuutil",
+        "//pddf_thermalutil",
+        "//pfc",
+        "//pfcwd",
+        "//psuutil",
+        "//rcli",
+        "//scripts",
         "//scripts:scripts_srcs",
-        "//sfputil:sfputil",
-        "//show:show",
-        "//show/interfaces:interfaces",
-        "//show/plugins:plugins",
-        "//show/plugins/auto:auto",
-        "//sonic-utilities-data:sonic-utilities-data",
-        "//sonic_cli_gen:sonic_cli_gen",
-        "//sonic_installer:sonic_installer",
-        "//sonic_package_manager:sonic_package_manager",
-        "//ssdutil:ssdutil",
-        "//syslog_util:syslog_util",
-        "//undebug:undebug",
-        "//utilities_common:utilities_common",
-        "//watchdogutil:watchdogutil",
+        "//sfputil",
+        "//show",
+        "//show/interfaces",
+        "//show/plugins",
+        "//show/plugins/auto",
+        "//sonic-utilities-data",
+        "//sonic_cli_gen",
+        "//sonic_installer",
+        "//sonic_package_manager",
+        "//ssdutil",
+        "//syslog_util",
+        "//undebug",
+        "//utilities_common",
+        "//watchdogutil",
     ],
 )
 
 tar(
     name = "scripts_pkg",
     srcs = [
-      "//scripts:srcs",
+        "//scripts:srcs",
     ],
     mutate = mutate(
         package_dir = "/usr/lib/python3/dist-packages",
@@ -278,21 +302,20 @@ tar(
 )
 
 py_image_layer(
-  name = "libs_pkg",
-  binary = ":libs_in_wheel",
-  # mutate = mutate(
-  #     package_dir = "/usr/lib/python3/dist-packages",
-  #     strip_prefix = "install/lib/python3.11/site-packages",
-  # ),
+    name = "libs_pkg",
+    binary = ":libs_in_wheel",
+    # mutate = mutate(
+    #     package_dir = "/usr/lib/python3/dist-packages",
+    #     strip_prefix = "install/lib/python3.11/site-packages",
+    # ),
 )
 
 site_packages(
-  name = "deps_dist",
-  srcs = [":all_deps"],
-  mutate = mutate(
-      package_dir = "/usr/lib/python3/dist-packages",
-      strip_prefix = "install/lib/python3.11/site-packages",
-  ),
-  visibility = ["//visibility:public"],
+    name = "deps_dist",
+    srcs = [":all_deps"],
+    mutate = mutate(
+        package_dir = "/usr/lib/python3/dist-packages",
+        strip_prefix = "install/lib/python3.11/site-packages",
+    ),
+    visibility = ["//visibility:public"],
 )
-
