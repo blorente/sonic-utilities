@@ -11,6 +11,12 @@ py_binary(
     ],
 )
 
+filegroup(
+    name = "srcs",
+    srcs = glob(["*.py"]),
+    visibility = ["//:__subpackages__"],
+)
+
 py_library(
     name = "pfcwd",
     srcs = [

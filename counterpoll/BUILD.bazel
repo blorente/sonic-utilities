@@ -1,5 +1,11 @@
 load("@aspect_rules_py//py:defs.bzl", "py_library")
 
+filegroup(
+    name = "srcs",
+    srcs = glob(["*.py"]),
+    visibility = ["//:__subpackages__"],
+)
+
 py_library(
     name = "counterpoll",
     srcs = [

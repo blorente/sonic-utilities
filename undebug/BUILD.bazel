@@ -7,6 +7,12 @@ py_binary(
     deps = ["//:all_deps"],
 )
 
+filegroup(
+    name = "srcs",
+    srcs = glob(["*.py"]),
+    visibility = ["//:__subpackages__"],
+)
+
 py_library(
     name = "undebug",
     srcs = [

@@ -10,6 +10,15 @@ py_binary(
     ],
 )
 
+filegroup(
+    name = "srcs",
+    srcs = glob([
+        "*.py",
+        "service_creator/**/*.py",
+    ]),
+    visibility = ["//:__subpackages__"],
+)
+
 # There are dependency cycles between this and service_creator.
 # This megatarget target breaks those cycles by globbing them in a single target.
 # gazelle:exclude service_creator

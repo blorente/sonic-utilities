@@ -321,14 +321,54 @@ site_packages(
 )
 
 # Python source packages from [tool.setuptools].packages in pyproject.toml.
-# Uses the same strip_prefix as deps_dist because aspect_rules_py installs
-# source packages into the same site-packages layout.
-site_packages(
+# Uses filegroup :srcs targets directly — avoids PyInfo transitive sources which would
+# pull in pip deps whose short-paths don't match strip_prefix anyway.
+tar(
     name = "libs_dist",
-    srcs = [":libs_in_wheel"],
+    srcs = [
+        "//acl_loader:srcs",
+        "//clear:srcs",
+        "//clear/plugins:srcs",
+        "//clear/plugins/auto:srcs",
+        "//config:srcs",
+        "//config/plugins:srcs",
+        "//config/plugins/auto:srcs",
+        "//connect:srcs",
+        "//consutil:srcs",
+        "//counterpoll:srcs",
+        "//crm:srcs",
+        "//debug:srcs",
+        "//dump:srcs",
+        "//fdbutil:srcs",
+        "//flow_counter_util:srcs",
+        "//fwutil:srcs",
+        "//generic_config_updater:srcs",
+        "//pcieutil:srcs",
+        "//pddf_fanutil:srcs",
+        "//pddf_ledutil:srcs",
+        "//pddf_psuutil:srcs",
+        "//pddf_thermalutil:srcs",
+        "//pfc:srcs",
+        "//pfcwd:srcs",
+        "//psuutil:srcs",
+        "//rcli:srcs",
+        "//sfputil:srcs",
+        "//show:srcs",
+        "//show/interfaces:srcs",
+        "//show/plugins:srcs",
+        "//show/plugins/auto:srcs",
+        "//sonic_cli_gen:srcs",
+        "//sonic_installer:srcs",
+        "//sonic_package_manager:srcs",
+        "//ssdutil:srcs",
+        "//syslog_util:srcs",
+        "//undebug:srcs",
+        "//utilities_common:srcs",
+        "//watchdogutil:srcs",
+    ],
     mutate = mutate(
         package_dir = "/usr/lib/python3/dist-packages",
-        strip_prefix = "install/lib/python3.11/site-packages",
+        strip_prefix = package_name(),
     ),
     visibility = ["//visibility:public"],
 )
@@ -357,6 +397,18 @@ flatten(
         ":libs_dist",
         ":scripts_pkg",
         ":pkg_data",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+flatten(
+    name = "sonic_utilities_pkg",
+    tars = [
+        ":libs_dist",
+        ":deps_dist",
+        ":scripts_pkg",
+        ":pkg_data",
+        "//sonic-utilities-data:sonic-utilities-data_all_pkg",
     ],
     visibility = ["//visibility:public"],
 )
