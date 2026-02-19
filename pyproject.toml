@@ -2,6 +2,7 @@
 requires = ["setuptools", "setuptools-scm", "wheel", "pytest-runner", "fastentrypoints"]
 build-backend = "setuptools.build_meta"
 
+# TODO BL: If we find that we don't want to migrate this repo entirely to bazel, make this a shim
 [project]
 name = "sonic-utilities"
 version = "1.2"

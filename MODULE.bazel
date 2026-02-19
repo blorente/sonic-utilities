@@ -6,6 +6,7 @@ bazel_dep(name = "tar.bzl", version = "0.8.1")
 bazel_dep(name = "aspect_rules_py", version = "1.8.4")
 bazel_dep(name = "caseyduquettesc_rules_python_pytest", version = "1.1.1", repo_name = "rules_python_pytest")
 bazel_dep(name = "bazel_skylib", version = "1.8.2")
+bazel_dep(name = "bazel_lib", version = "3.1.1")
 
 multitool = use_extension("@rules_multitool//multitool:extension.bzl", "multitool")
 multitool.hub(lockfile = "//:multitool.lock.json")
@@ -97,7 +98,7 @@ uv.lockfile(
 use_repo(uv, "sonic_utilities_pip")
 
 # Needed to fully resolve sonic-repositories, sonic_config_engine, and sonic_yang_mgmt
-bazel_dep(name = "sonic-build-infra", version = "0.0.0")
+bazel_dep(name = "sonic-build-infra", version = "0.0.0", repo_name = "sonic_build_infra")
 local_path_override(
     module_name = "sonic-build-infra",
     path = "../sonic-build-infra"

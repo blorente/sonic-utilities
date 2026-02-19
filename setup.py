@@ -19,20 +19,19 @@ sonic_dependencies = [
     'sonic-yang-mgmt',
 ]
 
-# TODO BL: figure out what we're going to do with scripts, whether we migrate them to pyproject or not.
-# for package in sonic_dependencies:
-#     try:
-#         package_dist = pkg_resources.get_distribution(package.split(">=")[0])
-#     except pkg_resources.DistributionNotFound:
-#         print(package + " is not found!", file=sys.stderr)
-#         print("Please build and install SONiC python wheels dependencies from sonic-buildimage", file=sys.stderr)
-#         exit(1)
-#     if ">=" in package:
-#         if version.parse(package_dist.version) >= version.parse(package.split(">=")[1]):
-#             continue
-#         print(package + " version not match!", file=sys.stderr)
-#         exit(1)
-#
+for package in sonic_dependencies:
+    try:
+        package_dist = pkg_resources.get_distribution(package.split(">=")[0])
+    except pkg_resources.DistributionNotFound:
+        print(package + " is not found!", file=sys.stderr)
+        print("Please build and install SONiC python wheels dependencies from sonic-buildimage", file=sys.stderr)
+        exit(1)
+    if ">=" in package:
+        if version.parse(package_dist.version) >= version.parse(package.split(">=")[1]):
+            continue
+        print(package + " version not match!", file=sys.stderr)
+        exit(1)
+
 setup(
     name='sonic-utilities',
     version='1.2',

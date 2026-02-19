@@ -1283,6 +1283,12 @@ requires-dist = [
     { name = "redis", specifier = ">=4.0" },
 ]
 
+[package.metadata.requires-dev]
+build = [
+    { name = "build" },
+    { name = "setuptools" },
+]
+
 [[package]]
 name = "sonic-platform-common"
 version = "1.0.0"
@@ -1322,6 +1328,12 @@ dependencies = [
 requires-dist = [
     { name = "natsort" },
     { name = "pyyaml" },
+]
+
+[package.metadata.requires-dev]
+build = [
+    { name = "build" },
+    { name = "setuptools" },
 ]
 
 [[package]]
@@ -1462,6 +1474,10 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
+build = [
+    { name = "build" },
+    { name = "setuptools" },
+]
 dev = [{ name = "pytest" }]
 
 [[package]]

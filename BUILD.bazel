@@ -2,7 +2,7 @@ load("@aspect_rules_py//py:defs.bzl", "py_library")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@gazelle//:def.bzl", "gazelle")
 load("@rules_deb//distroless:defs.bzl", "flatten")
-load("@sonic-build-infra//python:site_packages.bzl", "site_packages")
+load("@sonic_build_infra//python:site_packages.bzl", "site_packages")
 load("@tar.bzl", "mutate", "tar")
 
 # Generate targets from rules_py instead of rules_python.
@@ -21,10 +21,14 @@ load("@tar.bzl", "mutate", "tar")
 #
 # gazelle:resolve_regexp py .* //:all_deps
 
-# Ignore gcu and sonic-utilities-data for, they're their own wheels.
+# Ignore files:
 #
+# gcu and sonic-utilities-data, they're their own wheels.
 # gazelle:exclude gcu
 # gazelle:exclude sonic-utilities-data
+#
+# Setup.py is not needed for the Bazel build
+# gazelle:exclude setup.py
 
 # Override default resolution for in-source mappings, from `packages` in pyproject.toml
 #
@@ -222,13 +226,6 @@ py_library(
     ],
 )
 
-py_library(
-    name = "sonic-utilities",
-    srcs = ["setup.py"],
-    visibility = ["//:__subpackages__"],
-    deps = ["//:all_deps"],
-)
-
 bzl_library(
     name = "py_test_wrapper",
     srcs = ["py_test_wrapper.bzl"],
@@ -238,6 +235,7 @@ bzl_library(
 
 py_library(
     name = "libs_in_wheel",
+    visibility = ["//:__subpackages__"],
     deps = [
         "//:common",
         "//:platform_deps",
@@ -293,7 +291,6 @@ tar(
         package_dir = "/usr/lib/python3/dist-packages",
         strip_prefix = package_name(),
     ),
-    visibility = ["//visibility:public"],
 )
 
 # Package containing dependencies as per pyproject.toml
@@ -305,7 +302,6 @@ site_packages(
         package_dir = "/usr/lib/python3/dist-packages",
         strip_prefix = "install/lib/python3.11/site-packages",
     ),
-    visibility = ["//visibility:public"],
 )
 
 # Python source packages from [tool.setuptools].packages in pyproject.toml.
@@ -317,7 +313,6 @@ site_packages(
     mutate = mutate(
         package_dir = "/usr/lib/python3/dist-packages",
     ),
-    visibility = ["//visibility:public"],
 )
 
 # Non-Python package data files from [tool.setuptools.package-data] in pyproject.toml.
@@ -332,7 +327,6 @@ tar(
         package_dir = "/usr/lib/python3/dist-packages",
         strip_prefix = package_name(),
     ),
-    visibility = ["//visibility:public"],
 )
 
 # Combined archive of all relevant sources.
