@@ -297,6 +297,12 @@ site_packages(
     ),
 )
 
+py_library(
+    name = "sonic-utilities",
+    deps = libs_in_wheel,
+    visibility = ["//visibility:public"],
+)
+
 # Python source packages from [tool.setuptools].packages in pyproject.toml.
 # Uses the same strip_prefix as deps_dist because aspect_rules_py installs
 # source packages into the same site-packages layout.
