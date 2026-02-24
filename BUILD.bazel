@@ -281,7 +281,7 @@ tar(
         "//scripts:srcs",
     ],
     mutate = mutate(
-        package_dir = "/usr/lib/python3/dist-packages",
+        package_dir = "./usr/lib/python3/dist-packages",
         strip_prefix = package_name(),
     ),
 )
@@ -292,7 +292,7 @@ site_packages(
     name = "deps_dist",
     srcs = [":all_deps"],
     mutate = mutate(
-        package_dir = "/usr/lib/python3/dist-packages",
+        package_dir = "./usr/lib/python3/dist-packages",
         strip_prefix = "install/lib/python3.11/site-packages",
     ),
 )
@@ -313,7 +313,7 @@ site_packages(
     srcs = libs_in_wheel,
     exclude_filter = "external",
     mutate = mutate(
-        package_dir = "/usr/lib/python3/dist-packages",
+        package_dir = "./usr/lib/python3/dist-packages",
     ),
 )
 
@@ -326,7 +326,7 @@ tar(
         "//sonic_installer:pkg_data",
     ],
     mutate = mutate(
-        package_dir = "/usr/lib/python3/dist-packages",
+        package_dir = "./usr/lib/python3/dist-packages",
         strip_prefix = package_name(),
     ),
 )
