@@ -1,4 +1,8 @@
-module(name = "sonic-utilities")
+# Keep bazel_compatibility in sync with sonic-buildimage's .bazelversion.
+module(
+    name = "sonic-utilities",
+    bazel_compatibility = [">=8.5.1", "<=8.5.1"],
+)
 
 bazel_dep(name = "gazelle", version = "0.47.0")
 bazel_dep(name = "rules_multitool", version = "1.11.1")
