@@ -144,10 +144,16 @@ apt.sources_list(
     suites = ["bookworm", "bookworm-updates"],
     uris = ["https://snapshot.debian.org/archive/debian/20251001T023456Z"],
 )
+apt.sources_list(
+    architectures = ["amd64"],
+    components = ["main"],
+    suites = ["bookworm-security"],
+    uris = ["https://snapshot.debian.org/archive/debian-security/20251001T023456Z"],
+)
 
 apt.install(
     dependency_set = "bookworm",
-    suites = ["bookworm", "bookworm-updates"],
+    suites = ["bookworm", "bookworm-updates", "bookworm-security"],
     packages = [
         "python3-m2crypto",
     ],
