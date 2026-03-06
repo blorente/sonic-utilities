@@ -286,17 +286,6 @@ tar(
     ),
 )
 
-# Package containing dependencies as per pyproject.toml
-# We rename the output directories because that is where a wheel would be installed.
-site_packages(
-    name = "deps_dist",
-    srcs = [":all_deps"],
-    mutate = mutate(
-        package_dir = "./usr/lib/python3/dist-packages",
-        strip_prefix = "install/lib/python3.11/site-packages",
-    ),
-)
-
 py_library(
     name = "sonic-utilities",
     deps = libs_in_wheel,
@@ -311,10 +300,6 @@ py_library(
 site_packages(
     name = "libs_dist",
     srcs = libs_in_wheel,
-    exclude_filter = "external",
-    mutate = mutate(
-        package_dir = "./usr/lib/python3/dist-packages",
-    ),
 )
 
 # Non-Python package data files from [tool.setuptools.package-data] in pyproject.toml.
@@ -336,7 +321,6 @@ tar(
 flatten(
     name = "dist",
     tars = [
-        ":deps_dist",
         ":libs_dist",
         ":scripts_pkg",
         ":pkg_data",
